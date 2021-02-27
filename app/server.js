@@ -1,6 +1,9 @@
+
 const express = require('express');
 const app = express()
 const PORT = process.env.PORT || 3000
+
+app.use(express.static('public'))
 
 
 // Route Handlers
@@ -13,4 +16,4 @@ app.get('/', (req, res)=>{
 
 //Listener
 
-app.listen(PORT, ()=> `App listening on ${PORT}`)
+app.listen(PORT, ()=> console.log(`App listening on ${PORT}`))
