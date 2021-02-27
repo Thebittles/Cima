@@ -8,9 +8,20 @@ app.use(express.static('public'))
 
 // Route Handlers
 app.get('/', (req, res)=>{
+    res.render('home.ejs')
+})
+
+app.get('/about', (req, res)=>{
     res.render('index.ejs')
 })
 
+app.get('/contact', (req, res)=>{
+    res.render('login.ejs')
+})
+
+app.get('/register', (req, res)=>{
+    res.render('register.ejs')
+})
 
 
 
