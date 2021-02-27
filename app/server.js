@@ -15,7 +15,7 @@ app.get('/about', (req, res)=>{
     res.render('index.ejs')
 })
 
-app.get('/contact', (req, res)=>{
+app.get('/login', (req, res)=>{
     res.render('login.ejs')
 })
 
