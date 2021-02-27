@@ -1,0 +1,22 @@
+<h1>Login</h1>
+<form action="/login" method="POST">
+    <div>
+        <label for="email">Email</label>
+        <br>
+        <input type="text" id="email" name="email" required>
+    </div>
+    <div>
+        <br>
+        <label for="pw">Password</label>
+        <br>
+        <input type="password" id="pw" name="pw" required>
+        <br>
+    </div>
+
+    <button type="submit">Login</button>
+    <br>
+    <button type="button" onclick="location.href='/register'">Register</button>
+    <br>
+    <button type="button" onclick="location.href='/reset'">Reset Password</button>
+
+</form>
