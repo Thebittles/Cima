@@ -2,55 +2,66 @@
     <%- include('partials/header.ejs')%>
     <%- include('partials/navbar.ejs')%>
 
-
-<div class="wrapper">
-<div class="container">
+<div class="container mt-5">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-7">
             <h1 class="fw-bold">What do we provide?</h1>
             <h2 class="text-muted fw-light">Hero Sub-Title Description</h2>
             <p class="fw-bold">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius fuga minima, odio temporibus provident ratione, eum qui accusamus amet dolorum odit harum ut distinctio consectetur pariatur libero tempore. Inventore, totam?</p>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <h1 class="fw-bold">Resources</h1>
             <p class="fw-bold">Links to different reproductive health education or research</p>
         </div>
     </div>
+    <br>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" style="display: flex; justify-content: center;">
           <div class="slideshow-container">
               <div class="mySlides">
                   <div class="numbertext">1 / 3</div>
-                  <img src="/cima/public/assets/pexels-matheus-bertelli-573299.jpg" style="width: 75%" alt="UX Photos Demonstrating our Product">
+                  <img src="/public/assets/pexels-matheus-bertelli-573299.jpg" style="width: 75%" alt="UX Photos Demonstrating our Product">
               </div>
               
               <div class="mySlides">
                   <div class="numbertext">2 / 3</div>
-                  <img src="/cima/public/assets/pexels-brett-sayles-1346086.jpg" style="width: 75%" alt="UX Photos Demonstrating our Product">
+                  <img src="/public/assets/pexels-brett-sayles-1346086.jpg" style="width: 75%" alt="UX Photos Demonstrating our Product">
               </div>
               
               <div class="mySlides">
                   <div class="numbertext">3 / 3</div>
-                  <img src="/cima/public/assets/pexels-caio-69371.jpg" style="width: 75%" alt="UX Photos Demonstrating our Product">
+                  <img src="/public/assets/pexels-caio-69371.jpg" style="width: 75%" alt="UX Photos Demonstrating our Product">
               </div>
 
               <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
               <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
-             </div> 
-            <br>
+            
             <div style="text-align:center">
                 <span class="dot" onclick="currentSlide(1)"></span>
                 <span class="dot" onclick="currentSlide(2)"></span>
                 <span class="dot" onclick="currentSlide(3)"></span>
-            </div>     
+            </div>
+        </div>      
         </div>
     </div>
 </div>
-<form action="/register">
-    <button type="submit">Register</button>
-    </form>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-7">
+            <h1>About Us Text</h1>
+            <p>Hello we are ~ ~ ~ ~ ~ ~ ~</p>
+        </div>
+        <div class="col-md-5 ms-2">
+            <form action="/register">
+                <button class="btn btn-dark btn-lg" type="submit">Register</button>
+            </form>
+        </div>
+    </div>
 </div>
+
+
 
 
 <%- include('partials/footer.ejs') %>
