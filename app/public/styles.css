@@ -1,0 +1,14 @@
+#contact {
+    height: 100%;
+    width: 40%;
+    padding: 1%;
+    background-color: #E5E5E5;
+}
+
+#c-name {
+    width: 50%;
+}
+
+#c-email {
+    width: 50%;
+}

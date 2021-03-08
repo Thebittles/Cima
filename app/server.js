@@ -23,6 +23,10 @@ app.get('/register', (req, res)=>{
     res.render('register.ejs')
 })
 
+app.get('/contact', (req, res)=>{
+    res.render('contact.ejs')
+})
+
 
 
 //Listener
