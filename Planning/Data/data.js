@@ -21,7 +21,9 @@ User = {
     "passwordV": String
 }
 
-
+let symptomArray = [
+    
+]
 
 
 
@@ -31,15 +33,15 @@ Symptom = {
     "bodyLoc": [ 
             {
                 "id": Number,
-                "name": String,
+                "name": "right ovary",
                 "selected": Boolean,
                 "level": 9,
-                "top":[{  
+                "top":[{  //type of pain
                     "id": 1,
                     "name": String,
                     "selected": Boolean,
                     "debilitating": Boolean,
-                    "duration":  Date
+                    "duration":  Date//moment.js
                 
                 },
                 {
@@ -160,12 +162,12 @@ Cycle = {
             id: 1,
             name: 'Light',
             selected: true
-        }
+        },
         {
             id: 2,
             name: 'Medium',
             selected: true
-        }
+        },
         {
             id: 3,
             name: 'Heavy',
@@ -177,19 +179,57 @@ Cycle = {
 
 
 
-Cycle = {[
-    {
-        Month: 'Feb',
-        Date: '2/5 to 2/11',
-        solution:[{
-
+Cycle = [
+        {
+        "month": 'Feb',
+        "year": '2020',
+        "Start_Date": "Date",
+        "End_Date": "Date",
+        "solution":[{
+            "id": 1,
+            "item": "Tampons",
+            "selected": true
+    
+        },
+        {
+            "id": 2,
+            "item": "Liners",
+            "selected": false
+    
+        },
+        {
+            "id": 3,
+            "item": "Towels",
+            "selected": true
+    
+        },
+        {
+            "id": 4,
+            "item": "Cups",
+            "selected": false
         }],
         OOC_days: 4,
-    },
-    {
-        Month: Feb
-    }
-]}
+        "avg_bleeding": [
+                {
+                    'id': 1,
+                    'name': 'Light',
+                    'selected': true
+                },
+                {
+                    id: 2,
+                    name: 'Medium',
+                    selected: true
+                },
+                {
+                    id: 3,
+                    name: 'Heavy',
+                    selected: false
+                }]
+            },
+            
+        ]
+    
+
 
 
 
