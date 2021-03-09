@@ -22,7 +22,7 @@ app.get('/login', (req, res)=>{
 app.get('/register', (req, res)=>{
     res.render('register.ejs')
 })
-
+// add route to contact page
 app.get('/contact', (req, res)=>{
     res.render('contact.ejs')
 })

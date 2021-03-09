@@ -4,11 +4,11 @@
     padding: 1%;
     background-color: #E5E5E5;
 }
-
+/* contact page name input */
 #c-name {
     width: 50%;
 }
-
+/* contact page email input */
 #c-email {
     width: 50%;
 }
