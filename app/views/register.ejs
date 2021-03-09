@@ -6,32 +6,32 @@
 <div class="container-fluid row align-items-center" id="registerContainer">
     <div class="container-fluid row align-items-center" id="register">
         <h3 class="text-light text-center">Register</h3>
-        <form action="" class="text-center">
+        <form action="/register" method="POST" class="text-center">
             <label for="email">Email</label>
             <br>
-            <input type="text" name="email">
+            <input type="email" name="email" id="email">
             <br>
-            <label for="email">First Name</label>
+            <label for="f_name">First Name</label>
             <br>
-            <input type="text" name="email">
+            <input type="text" name="f_name" id="f_name">
             <br>
-            <label for="email">Last Name</label>
+            <label for="l_name">Last Name</label>
             <br>
-            <input type="text" name="email">
+            <input type="text" name="l_name" id="l_name">
             <br>
-            <label for="email">Date of Birth</label>
+            <label for="DOB">Date of Birth</label>
             <br>
-            <input type="text" name="email">
+            <input type="date" name="DOB" id="DOB">
             <br>
-            <label for="email">Password</label>
+            <label for="password">Password</label>
             <br>
-            <input type="text" name="email">
+            <input type="password" name="password" id="password"> 
             <br>
-            <label for="email">Re-enter Password</label>
+            <label for="password">Re-enter Password</label>
             <br>
-            <input type="text" name="email">
+            <input type="password" name="pw_confirm" id="pw_confirm">
             <br><br>
-            <button type="button" class="btn btn-dark">Register</button>
+            <button type="submit" class="btn btn-dark">Register</button>
             <br><br>
             <button type="button" class="btn btn-dark">Register with OAuth</button>
             <br><br>
