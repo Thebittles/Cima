@@ -1,1 +1,22 @@
-<h1>I am the contact page</h1>
+
+<%- include('partials/header.ejs')%>
+<%- include('partials/navbar.ejs')%>
+
+<!-- contact form -->
+<div class="container my-3" id="contact">
+    <h1 class="text-center">Get in touch</h1>
+        <form 
+        action="/contact"
+        method="POST"
+        class="text-center">
+        <label for="name">Name</label><br>
+        <input type="text" name="name" id="c-name"><br>
+        <label for="email">Email</label><br>
+        <input type="email" name="email" id="c-email"><br><br>
+        <label for="message">Message</label><br>
+        <textarea name="message" id="" cols="50" rows="8"></textarea><br>
+        <button type="submit" class="btn btn-dark" value="submit">Submit</button>
+        </form>
+</div>
+
+<%- include('partials/footer.ejs') %>
