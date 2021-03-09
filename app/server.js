@@ -54,8 +54,8 @@ app.get('/', (req, res)=>{
     res.render('home.ejs')
 })
 
-app.get('/about', (req, res)=>{
-    res.render('index.ejs')
+app.get('/contact', (req, res)=>{
+    res.render('contact.ejs')
 })
 
 app.get('/login', (req, res)=>{
@@ -88,6 +88,10 @@ app.get('/dashboard', isLoggedIn, (req, res) =>{
 
 app.get('/register', (req, res)=>{
     res.render('register.ejs')
+})
+// add route to contact page
+app.get('/contact', (req, res)=>{
+    res.render('contact.ejs')
 })
 
 
