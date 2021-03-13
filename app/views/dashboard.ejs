@@ -1,1 +1,20 @@
+<%- include('partials/header.ejs')%>
+<%- include('partials/navbar.ejs')%>
+
 <h1>This is the dashboard page</h1>
+
+<h1>Cool we got login/ register working</h1>
+
+
+<form action="/doctor">
+    <input type="submit" value="Add Doctor" />
+</form>
+<form action="/symptom">
+    <input type="submit" value="Add Symptom" />
+</form>
+<form action="/treatment">
+  <input type="submit" value="Add Treatment" />
+</form>
+
+
+<%- include('partials/footer.ejs') %>

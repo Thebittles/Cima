@@ -1,0 +1,97 @@
+<%- include('partials/header.ejs')%>
+<%- include('partials/navbar.ejs')%>
+
+
+    <form class="form-horizontal" action="/doctor" method="POST">
+        <fieldset>
+        
+        <!-- Form Name -->
+        <legend>Add Doctor</legend>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="Doctor Name">Doctor</label>  
+          <div class="col-md-4">
+          <input id="Doctor Name" name="Doctor Name" type="text" placeholder="Enter Doctors Name" class="form-control input-md" required="">
+          <span class="help-block">"Dr. XXX"</span>  
+          </div>
+        </div>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="Phone">Phone</label>  
+          <div class="col-md-4">
+          <input id="Phone" name="Phone" type="text" placeholder="Enter Phone Number" class="form-control input-md">
+          <span class="help-block">(XXX) XXX-XXXX</span>  
+          </div>
+        </div>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="Email">Email</label>  
+          <div class="col-md-4">
+          <input id="Email" name="Email" type="text" placeholder="Enter Doctor email" class="form-control input-md">
+          <span class="help-block">XXXXX@XXX.com</span>  
+          </div>
+        </div>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="Country">Country</label>  
+          <div class="col-md-4">
+          <input id="Country" name="Country" type="text" placeholder="Country" class="form-control input-md">
+          <span class="help-block">United States</span>  
+          </div>
+        </div>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="State">State</label>  
+          <div class="col-md-4">
+          <input id="State" name="State" type="text" placeholder="State" class="form-control input-md">
+          <span class="help-block">TX</span>  
+          </div>
+        </div>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="City">City</label>  
+          <div class="col-md-4">
+          <input id="City" name="City" type="text" placeholder="Enter City Name" class="form-control input-md">
+          <span class="help-block"> Austin</span>  
+          </div>
+        </div>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="Address">Address</label>  
+          <div class="col-md-4">
+          <input id="Address" name="Address" type="text" placeholder="Enter Street Name &amp; Number" class="form-control input-md">
+          <span class="help-block">555 Elmo st.</span>  
+          </div>
+        </div>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="Zip">Zip</label>  
+          <div class="col-md-4">
+          <input id="Zip" name="Zip" type="text" placeholder="78745" class="form-control input-md">
+            
+          </div>
+        </div>
+        
+        <!-- Button -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="Submit"></label>
+          <div class="col-md-4">
+            <button id="Submit" name="Submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+        
+        </fieldset>
+        </form>
+        
+        
+
+
+        <%- include('partials/footer.ejs') %>

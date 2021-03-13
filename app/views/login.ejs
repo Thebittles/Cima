@@ -5,19 +5,19 @@
 <h1>Login</h1>
 <form action="/login" method="POST">
     <div>
-        <label for="email">Email</label>
+        <label for="username">Email</label>
         <br>
-        <input type="text" id="email" name="email" required>
+        <input type="email" id="username" name="username" required>
     </div>
     <div>
         <br>
-        <label for="pw">Password</label>
+        <label for="password">Password</label>
         <br>
-        <input type="password" id="pw" name="pw" required>
+        <input type="password" id="password" name="password" required>
         <br>
     </div>
 
-    <button type="submit">Login</button>
+    <input type="submit" value="Login">
     <br>
     <button type="button" onclick="location.href='/register'">Register</button>
     <br>

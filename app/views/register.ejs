@@ -4,20 +4,20 @@
 
 
 <div class="container-fluid row align-items-center" id="registerContainer">
+    <h3 class="text-light text-center">Register</h3>
     <div class="container-fluid row align-items-center" id="register">
-        <h3 class="text-light text-center">Register</h3>
         <form action="/register" method="POST" class="text-center">
             <label for="email">Email</label>
             <br>
-            <input type="email" name="email" id="email">
+            <input type="email" name="email" id="email" required>
             <br>
-            <label for="f_name">First Name</label>
+            <label for="firstname">First Name</label>
             <br>
-            <input type="text" name="f_name" id="f_name">
+            <input type="text" name="firstname" id="lastname">
             <br>
-            <label for="l_name">Last Name</label>
+            <label for="lastname">Last Name</label>
             <br>
-            <input type="text" name="l_name" id="l_name">
+            <input type="text" name="lastname" id="lastname">
             <br>
             <label for="DOB">Date of Birth</label>
             <br>
@@ -31,7 +31,7 @@
             <br>
             <input type="password" name="pw_confirm" id="pw_confirm">
             <br><br>
-            <button type="submit" class="btn btn-dark">Register</button>
+            <input type="submit" value="Register">
             <br><br>
             <button type="button" class="btn btn-dark">Register with OAuth</button>
             <br><br>
