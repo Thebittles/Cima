@@ -27,73 +27,26 @@ let symptomArray = [
 
 
 
+
+
 Symptom = {
+    
     "date": Date,
     "id":  Number,
-    "bodyLoc": [ 
+    "bodyLoc": [  //recieving an array of body loc names 
             {
-                "id": Number,
-                "name": "right ovary",
+                "id": Number, ///name rather than number to 
+                "name": "right ovary", //instead of name maybe bodypart key
                 "selected": Boolean,
-                "level": 9,
-                "top":[{  //type of pain
-                    "id": 1,
-                    "name": String,
-                    "selected": Boolean,
-                    "debilitating": Boolean,
-                    "duration":  Date//moment.js
-                
-                },
-                {
-                    "id": Number,
-                    "name": String,
-                    "selected": Boolean,
-                    "debilitating": Boolean,
-                    "duration":  Date
-                }]
-                
+                "level": 9,  
             },
             {
                 "id": Number,
-                "name": String,
+                "name": "left ovary",
                 "selected": Boolean,
-                "level": Number,
-                "top":[{ 
-                    "id": Number,
-                    "name": String,
-                    "selected": Boolean,
-                    "debilitating": Boolean,
-                    "duration":  Date
+                "level": Number
                 
-                },
-                {
-                    "id": Number,
-                    "name": String,
-                    "selected": Boolean,
-                    "debilitating": Boolean,
-                    "duration":  Date//moment.js
-                
-                }]//
-                
-            }
-        ],
-    "triggers": [
-        {
-            "id": Number,
-            "name": String,
-            "selected": Boolean
-        },
-        {
-            "id":Number,
-            "name": String,
-            "selected": Boolean
-        },
-        {
-            "id": Number,
-            "name": String,
-            "selected": Boolean
-        }
-    ],
+            }]
 }
 
 
@@ -208,7 +161,7 @@ Cycle = [
             "item": "Cups",
             "selected": false
         }],
-        OOC_days: 4,
+        "OOC_days": 4,
         "avg_bleeding": [
                 {
                     'id': 1,
@@ -235,3 +188,28 @@ Cycle = [
 
 
 ///Add out of commission time
+
+
+
+
+
+
+
+
+    "triggers": [
+        {
+            "id": Number,
+            "name": String,
+            "selected": Boolean
+        },
+        {
+            "id":Number,
+            "name": String,
+            "selected": Boolean
+        },
+        {
+            "id": Number,
+            "name": String,
+            "selected": Boolean
+        }
+    ]

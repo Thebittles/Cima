@@ -1,5 +1,5 @@
 
-
+  <!--Add symptom routes  -->
 if you are on dashboard
 /dashboard
 
@@ -17,6 +17,14 @@ if you submit the form by click button at bottom of div add symptom // redirect 
 /dashboard/symptom/:id - (DELETE)
 
 
+<!-- End Symptom Routes -->
 
 
 
+
+<!-- Add Doctor Routes -->
+
+//
+
+
+<!-- End Doctor Routes -->
