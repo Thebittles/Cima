@@ -1,0 +1,60 @@
+<%- include('partials/header.ejs')%>
+<%- include('partials/navbar.ejs')%>
+
+
+ <div class="container-fluid">
+  <div class="row">
+   <div class="col-md-6 col-sm-6 col-xs-12">
+    <form method="post" action="/treatment">
+     <div class="form-group form-group-sm">
+      <label class="control-label requiredField" for="treatementName">
+       Treatment Name
+       <span class="asteriskField">
+        *
+       </span>
+      </label>
+      <input class="form-control" id="treatementName" name="treatementName" placeholder="Ibuprofen" type="text"/>
+     </div>
+     <div class="form-group form-group-sm">
+      <label class="control-label requiredField" for="startDate">
+       Start Date
+       <span class="asteriskField">
+        *
+       </span>
+      </label>
+      <input class="form-control" id="startDate" name="startDate" placeholder="MM/DD/YYYY" type="text"/>
+     </div>
+     <div class="form-group form-group-sm">
+      <label class="control-label " for="endDate">
+       End Date
+      </label>
+      <input class="form-control" id="endDate" name="endDate" placeholder="MM/DD/YYYY" type="text"/>
+     </div>
+     <div class="form-group form-group-sm">
+      <label class="control-label " for="number">
+       Effective
+      </label>
+      <input class="form-control" id="number" name="number" placeholder="0" type="text"/>
+      <span class="help-block" id="hint_number">
+       Please enter a number 1-10 on how effective this treatment was.
+      </span>
+     </div>
+     <div class="form-group form-group-sm">
+      <label class="control-label " for="review">
+       Review
+      </label>
+      <textarea class="form-control" cols="40" id="review" name="review" placeholder="Notes " rows="10"></textarea>
+     </div>
+     <div class="form-group">
+      <div>
+       <button class="btn btn-custom " name="submit" type="submit">
+        Submit
+       </button>
+      </div>
+     </div>
+    </form>
+   </div>
+  </div>
+ </div>
+
+ <%- include('partials/footer.ejs') %>

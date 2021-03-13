@@ -10,17 +10,12 @@ const LocalStrategy = require('passport-local');
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const PORT = process.env.PORT || 3000
-
+const keys = require('./config/keys')
 app.use(express.static('public'))
 
 //connecting mongoose
-mongoose.connect("mongodb://mongo.accsoftwarebootcamp.com/cima_passport",
+mongoose.connect(keys.mongoURI,
 {
-  user: "accadmin",
-  pass: "acc_rocks_2020",
-  auth: {
-      authSource: "admin"
-  },
   useNewUrlParser: true,
   useUnifiedTopology: true 
 });
@@ -29,11 +24,13 @@ mongoose.connect("mongodb://mongo.accsoftwarebootcamp.com/cima_passport",
 var UserModel = require("./models/user");
 
 app.use(bodyParser.urlencoded({extended:true}));
+var urlencodedParser = bodyParser.urlencoded({extended: false})
 
+//Here, we require passport and initialize it along with its session authentication middleware
 //load session middleware in the app object
 // gives back function
 app.use(require('express-session')({
-    secret: 'Blah Blah Blah', //used to encript the user session info before saving to db
+    secret: 'secret', //used to encript the user session info before saving to db
     resave: false, //save the session obj if not changed
     saveUninitialized: false //save the session obj even if not initialized
 }));
@@ -49,7 +46,15 @@ passport.serializeUser(UserModel.serializeUser());
 // load functions to read from db into passport function -- whenever user uses a protected route
 passport.deserializeUser(UserModel.deserializeUser());
 
-// Route Handlers
+
+
+
+
+
+
+////////////////////////////////////////////////////////////// Route Handlers
+/* NavBar & Landing */
+
 app.get('/', (req, res)=>{
     res.render('home.ejs')
 })
@@ -57,6 +62,27 @@ app.get('/', (req, res)=>{
 app.get('/contact', (req, res)=>{
     res.render('contact.ejs')
 })
+
+/* End Navbar & Landing */
+
+
+
+
+/* MIDDLEWARE */
+
+//middleware to prevent users from manually going to /newsfeed
+isLoggedIn = (req, res, next) =>{
+    if(req.isAuthenticated()){ //isAuthenticated is built into passport method and checks to see if user is logged in
+        return next(); //move to the next piece of code
+    }
+    res.redirect('/login')
+}
+
+/* END MIDDLEWARES */
+
+
+
+/* Logging in Routes */
 
 app.get('/login', (req, res)=>{
     res.render('login.ejs')
@@ -69,30 +95,120 @@ app.post('/login', passport.authenticate('local', //passport.authenticate is mid
 }), (req,res)=>{
     //nothing is needed inside callback function bc middleware has handled route handling
 });
+
+
+app.get('/dashboard', isLoggedIn, (req, res) =>{
+    res.render('dashboard.ejs')
+});
+
+
 //logout route
 app.get('/logout', (req, res)=>{
     req.logout(); //passport destroys all user data in session
     res.redirect('/'); //redirects back to root route
 });
-//middleware to prevent users from manually going to /newsfeed
-isLoggedIn = (req, res, next) =>{
-    if(req.isAuthenticated()){ //isAuthenticated is built into passport method and checks to see if user is logged in
-        return next(); //move to the next piece of code
-    }
-    res.redirect('/login')
-}
-//newsfeed route
-app.get('/dashboard', isLoggedIn, (req, res) =>{
-    res.render('newsfeed.ejs')
-});
+
+
+
+
+
+
+/* Register Routes */
 
 app.get('/register', (req, res)=>{
     res.render('register.ejs')
 })
-// add route to contact page
-app.get('/contact', (req, res)=>{
-    res.render('contact.ejs')
+
+app.post('/register', (req, res)=>{
+    if(!req.body) return res.sendStatus(400)
+    const data = JSON.parse(JSON.stringify(req.body));
+    console.log(data)
+     
+    var newUser = new UserModel(
+        {username: req.body.email,
+         firstName: req.body.firstname,
+         lastName: req.body.lastname,
+         DOB: req.body.DOB
+    });
+
+    UserModel.register(newUser, req.body.password, function(err, user){
+        if(err){
+            console.log(err);
+            return res.render("register.ejs")
+        } else {
+            passport.authenticate("local")(req, res, function(){
+                res.redirect("dashboard.ejs");
+            });
+        }
+    }) 
+
 })
+
+
+/* End Register */
+
+
+
+/* Add Doctor Routes */
+
+app.get('/doctor', isLoggedIn, (req, res)=>{
+    res.render('doctor.ejs')
+})
+
+
+app.post('/doctor', isLoggedIn, urlencodedParser, (req,res)=> {
+    if(!req.body) return res.sendStatus(400)
+    const data = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
+    console.log(data)
+    res.send('Doctor has been added: ')
+})
+/* End Doctor Routes */
+
+
+
+/* Add Symptom Routes */
+app.get('/symptom', isLoggedIn, (req, res)=>{
+    res.render('symptom.ejs')
+})
+
+
+app.post('/symptom', isLoggedIn, urlencodedParser, (req,res)=> {
+    if(!req.body) return res.sendStatus(400)
+    const data = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
+    console.log(data)
+    let bodyParts = data["Body Locations"]
+
+
+    res.send('Thanks for logging a symptom!')
+})
+
+/* End Symptom Routes */
+
+
+
+
+/* Add Treatment Routes */
+app.get('/treatment', isLoggedIn, (req, res)=>{
+
+    res.render('treatment.ejs')
+})
+
+
+
+app.post('/treatment', isLoggedIn, urlencodedParser, (req,res)=> {
+    if(!req.body) return res.sendStatus(400)
+    const data = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
+    console.log(data)
+   
+    res.render('home.ejs', {data: req.body})
+})
+/* End Treatment Routes */
+
+
+
+
+
+
 
 
 
