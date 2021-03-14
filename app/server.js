@@ -23,8 +23,9 @@ mongoose.connect(keys.mongoURI,
 //importing mongoose schema
 var UserModel = require("./models/user");
 
-app.use(bodyParser.urlencoded({extended:true}));
-var urlencodedParser = bodyParser.urlencoded({extended: false})
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({extended:true})); // support encoded bodies
+var urlencodedParser = bodyParser.urlencoded({extended: true})
 
 //Here, we require passport and initialize it along with its session authentication middleware
 //load session middleware in the app object
@@ -47,11 +48,6 @@ passport.serializeUser(UserModel.serializeUser());
 passport.deserializeUser(UserModel.deserializeUser());
 
 
-
-
-
-
-
 ////////////////////////////////////////////////////////////// Route Handlers
 /* NavBar & Landing */
 
@@ -64,9 +60,6 @@ app.get('/contact', (req, res)=>{
 })
 
 /* End Navbar & Landing */
-
-
-
 
 /* MIDDLEWARE */
 
@@ -136,8 +129,8 @@ app.post('/register', (req, res)=>{
             console.log(err);
             return res.render("register.ejs")
         } else {
-            passport.authenticate("local")(req, res, function(){
-                res.redirect("dashboard.ejs");
+            UserModel.authenticate("local")(req, res, function(){
+                res.redirect("/login");
             });
         }
     }) 
