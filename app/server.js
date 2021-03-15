@@ -127,7 +127,7 @@ app.post('/register', (req, res)=>{
     UserModel.register(newUser, req.body.password, function(err, user){
         if(err){
             console.log(err);
-            return res.render("register.ejs")
+            return res.redirect('/register')
         } else {
             // replaced passport.auth with UserModel.auth
             UserModel.authenticate("local")(req, res, function(){
@@ -155,7 +155,7 @@ app.post('/doctor', isLoggedIn, urlencodedParser, (req,res)=> {
     if(!req.body) return res.sendStatus(400)
     const data = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
     console.log(data)
-    res.send('Doctor has been added: ')
+    res.redirect('/dashboard')
 })
 /* End Doctor Routes */
 
@@ -174,7 +174,7 @@ app.post('/symptom', isLoggedIn, urlencodedParser, (req,res)=> {
     let bodyParts = data["Body Locations"]
 
 
-    res.send('Thanks for logging a symptom!')
+    res.redirect('/dashboard')
 })
 
 /* End Symptom Routes */
@@ -184,8 +184,7 @@ app.post('/symptom', isLoggedIn, urlencodedParser, (req,res)=> {
 
 /* Add Treatment Routes */
 app.get('/treatment', isLoggedIn, (req, res)=>{
-
-    res.render('treatment.ejs')
+res.redirect('/dashboard')
 })
 
 
@@ -195,7 +194,7 @@ app.post('/treatment', isLoggedIn, urlencodedParser, (req,res)=> {
     const data = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
     console.log(data)
    
-    res.render('home.ejs', {data: req.body})
+    res.redirect('/dashboard')
 })
 /* End Treatment Routes */
 
