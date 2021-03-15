@@ -3,39 +3,72 @@
 
 
 
-<div class="container-fluid row align-items-center" id="registerContainer">
-    <h3 class="text-light text-center">Register</h3>
-    <div class="container-fluid row align-items-center" id="register">
-        <form action="/register" method="POST" class="text-center">
-            <label for="email">Email</label>
-            <br>
-            <input type="email" name="email" id="email" required>
-            <br>
+<div class="row" id="registerContainer">
+  <div class="col-md-6 m-auto" id="register">
+    <h3 class="text-light text-center mb-3">Register</h3>
+        <form action="/register" method="POST">
+          <!--  -->
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input 
+              type="email" 
+              name="email" 
+              id="email" 
+              class="form-control"
+              required>
+           </div>
+
+           <div class="form-group">
             <label for="firstname">First Name</label>
-            <br>
-            <input type="text" name="firstname" id="lastname">
-            <br>
+            <input 
+            type="text" 
+            name="firstname" 
+            id="lastname"
+            class="form-control">
+           </div>
+
+           <div class="form-group">
             <label for="lastname">Last Name</label>
-            <br>
-            <input type="text" name="lastname" id="lastname">
-            <br>
-            <label for="DOB">Date of Birth</label>
-            <br>
-            <input type="date" name="DOB" id="DOB">
-            <br>
+            <input 
+            type="text" 
+            name="lastname" 
+            id="lastname"
+            class="form-control">
+           </div>
+
+           <div class="form-group">
+            <label for="DOB">Date of Birth</label> 
+            <input 
+            type="date" 
+            name="DOB" 
+            id="DOB"
+            class="form-control">
+          </div>
+
+          <div class="form-group">
             <label for="password">Password</label>
-            <br>
-            <input type="password" name="password" id="password"> 
-            <br>
+            <input 
+            type="password" 
+            name="password" 
+            id="password"
+            class="form-control"> 
+          </div>
+
+          <div class="form-group">
             <label for="password">Re-enter Password</label>
-            <br>
-            <input type="password" name="pw_confirm" id="pw_confirm">
-            <br><br>
-            <input type="submit" value="Register">
+            <input 
+            type="password" 
+            name="pw_confirm" 
+            id="pw_confirm"
+            class="form-control">
+         </div>
+
+            <button type="submit" class="btn btn-secondary">Register</button>
             <br><br>
             <button type="button" class="btn btn-dark">Register with OAuth</button>
-            <br><br>
+            <br>
         </form>
+        <p class="lead mt-4">Have an account? <a href="/login">Login</a></p>
     </div>
 </div>
 
