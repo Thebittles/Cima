@@ -89,3 +89,30 @@ font-family: 'Playfair Display', serif;
 #footer {
 background-color: #524A5C; 
 }
+
+#formBox {
+    height: 400px;
+    background-color: grey;
+    border-radius: 10px;
+    width: 100%;
+}
+#infoBox {
+    height: 400px;
+    background-color: grey;
+    border-radius: 10px;
+    width: 100%;
+}
+
+#symptomNav {
+    height: 400px;
+    background-color: grey;
+    border-radius: 10px;
+    width:100%;
+}
+
+#symptomDiv {
+    height: 400px;
+    background-color: grey;
+    border-radius: 10px;
+    width: 100%;
+}

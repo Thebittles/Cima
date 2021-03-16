@@ -1,33 +1,98 @@
-<%- include('partials/header.ejs')%>
-<%- include('partials/navbar-loggedin.ejs')%>
-
-<h1>This is the dashboard page</h1>
-
-<h1>Cool we got login/ register working</h1>
-
-
-<div class="container">
-  <div class="render-form">
-    <div class="row">
-      <div class="col-lg-4">
-        <p>Forms would be here</p>
+ <!-- Header, Navbar, and general Welcome Message -->
+ <section>
+  <%- include('partials/header.ejs')%>
+  <%- include('partials/navbar-loggedin.ejs')%>
+  <br>
+ <h1 class="text-center">Welcome ${User}, to your CIMA Dashboard!</h1>
+</section>
+<!-- Section 1 to Add Information and view logged information -->
+<section id="dashSectionOne">
+  <div class="container">
+      <div class="row">
+          <div class="col text-center">
+              <div class="btn-group" role="group" aria-label="Basic example">
+                  <form action="/symptom">
+                      <button type="submit" class="btn btn-light" value="Add Symptom">Add Symptom</button>
+                  </form>
+                  <form action="/doctor">
+                      <button type="submit" class="btn btn-light" value="Add Treatment">Add Treatment</button>
+                  </form>
+                  <form action="/treatment">
+                      <button type="submit" class="btn btn-light" value="Add Doctor">Add Doctor</button>
+                  </form>
+                </div>
+                  <div id="formBox">
+                      <p class="text-center text-light">Forms will appear here when button is clicked</p>
+                      <div id="forms">
+                          <p>I am a form</p>
+                      </div>
+                  </div>
+          </div>
+          <div class="col text-center">
+              <h4 class="text-light">Logged Information</h3>
+              <div id="infoBox">
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                      <button type="button" class="btn btn-light">Day View</button>
+                      <button type="button" class="btn btn-light">Week View</button>
+                      <button type="button" class="btn btn-light">Month View</button>
+                      <button type="button" class="btn btn-light">Year View</button>
+                    </div>
+                    <p class="text-center text-light">Logged information will appear below</p>
+              </div>
+          </div>
       </div>
-    </div>
   </div>
-</div>
+</section>
+<br>
+<!-- Section 2 Charts that show symptom and period severity over time -->
+<section id="dashSectionTwo">
+  <div class="container">
+      <div class="row">
+          <div class="col text-center">
+                  <div id="symptomNav">
+                      <h4 class="text-center text-light">View/Edit Symptoms Information</h4>
+                      <div class="dropdown">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            View By
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Week</a></li>
+                            <li><a class="dropdown-item" href="#">Month</a></li>
+                            <li><a class="dropdown-item" href="#">Year</a></li>
+                          </ul>
+                        </div>
+                        <br><br>
+                        <br><br>
+                        <br><br>
+                        <div id="periodNav">
+                            <h4 class="text-center text-light">View Period Information</h4>
+                          <div class="dropdown">
+                              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                View By
+                              </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Week</a></li>
+                                <li><a class="dropdown-item" href="#">Month</a></li>
+                                <li><a class="dropdown-item" href="#">Year</a></li>
+                              </ul>
+                            </div>
+                        </div>
+                  </div>
+          </div>
+          <div class="col text-center">
+              <div id="symptomDiv">
+                  <p>Here you can view and edit your symptoms by date using the dropdown</p>
+                  <br><br>
+                  <br><br>
+                  <br><br>
+                  <br>
+                  <div id="periodDiv">
+                      <p>charts will populate here to show period info </p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
 
-
-<form action="/doctor">
-    <input type="submit" value="Add Doctor" />
-</form>
-<form action="/symptom">
-    <input type="submit" value="Add Symptom" />
-</form>
-<form action="/treatment">
-  <input type="submit" value="Add Treatment" />
-</form>
-
-<!-- added logout -->
-<a href="/logout" class="btn btn-secondary">Logout</a>
-
-<%- include('partials/footer.ejs') %>
+<%- include('partials/footer.ejs')%>
