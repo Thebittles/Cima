@@ -64,3 +64,21 @@ font-family: 'Playfair Display', serif;
 
 
 /* End Dashboard */
+
+.navbar-container {
+    background-color: #524A5C;
+    width: 100%;
+    height: 300px;
+    color: white;
+
+}
+
+#nav1 {
+    background-color: #524A5C;  
+}
+#hmbtn {
+    background-color: #313131;
+}
+
+
+
