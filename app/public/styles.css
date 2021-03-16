@@ -1,3 +1,11 @@
+
+/* Header */
+body{
+font-family: 'Playfair Display', serif;
+
+}
+
+
 #contact {
     height: 100%;
     width: 40%;
@@ -12,3 +20,47 @@
 #c-email {
     width: 50%;
 }
+
+
+/* Homepage */
+
+.dark-section {
+    background: #313131;
+    color: white;
+}
+
+.light-section {
+    background: #BAB4BB;
+
+}
+
+
+.carousel {
+    background: #BAB4BB;
+}
+.carousel-item{
+    text-align: center;
+    max-height: 400px;
+    min-height: 200px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+}
+
+.carousel-item img {
+    width:100%;
+    opacity: .5;
+
+  }
+/* End Hompeage */
+
+
+
+
+
+/* Dashboard */
+.render-form {
+    background-color: blueviolet;
+    height: 100px;
+    width: 200px;
+}
+
+
+/* End Dashboard */

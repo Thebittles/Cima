@@ -55,11 +55,15 @@ app.get('/', (req, res)=>{
     res.render('home.ejs')
 })
 
+
+
+
 app.get('/contact', (req, res)=>{
     res.render('contact.ejs')
 })
 
-/* End Navbar & Landing */
+
+
 
 /* MIDDLEWARE */
 
