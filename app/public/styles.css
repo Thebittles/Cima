@@ -117,3 +117,17 @@ background-color: #524A5C;
     border-radius: 10px;
     width: 100%;
 }
+
+/* Doctor */
+.form-wrapper {
+    background-color: gray;
+    color: rgb(238, 235, 235);
+    border-radius: 10px;
+    text-shadow: 1px 1px 4px black;
+    box-shadow: 5px 10px 10px #888888;
+    margin: 0 auto;
+    padding: 10px;
+
+}
+
+/* End doctor */

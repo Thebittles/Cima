@@ -65,6 +65,8 @@ Treatments = {
 Doctors = {
     "id": Number,
     "name": String,
+    "start_date": '03/05/2021',
+    "end_date": '03/05/2021',
     "contact": {
         "country": String,
         "state": String,
@@ -74,8 +76,7 @@ Doctors = {
         "zip": 78748,
         "email": 'drdulemba@MediaDeviceInfo.cm'
     },
-    "start_date": '03/05/2021',
-    "end_date": '03/05/2021'
+
 }
 
 
