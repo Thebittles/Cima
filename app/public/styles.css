@@ -7,28 +7,19 @@ color:rgb(0, 0, 0)
 }
 
 
-#contact {
+#contact, #login, #registerContainer {
     height: 100%;
-    width: 100%;
+    width: 90%;
     padding: 1%;
     background-color: #BAB4BB;
-    text-shadow: 1px 1px 4px black;
+    text-shadow: 1px 1px 4px #524A5C;
     box-shadow: 5px 10px 10px #888888;
+    border-radius: 10px;
 }
-/* contact page name input */
-#c-name {
+/* contact page name, email, textarea input responsive 
+#c-name, #c-email, #textarea {
     width: 50%;
-}
-/* contact page email input */
-#c-email {
-    width: 50%;
-}
-
-/* textarea responsive */
-#textarea {
-    width: 50%;
-}
-
+}*/
 
 /* Homepage */
 
@@ -79,8 +70,13 @@ color:rgb(0, 0, 0)
     color: white;
 }
 
+
 #nav1 {
     background-color: #524A5C;  
+}
+
+.nav a:hover{
+    background-color: #BAB4BB;
 }
 
 #hmbtn {
@@ -88,7 +84,7 @@ color:rgb(0, 0, 0)
 }
 
 #footer {
-background-color: #524A5C; 
+background-color: #524A5C;
 }
 
 #formBox {
