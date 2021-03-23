@@ -75,13 +75,20 @@ isLoggedIn = (req, res, next) =>{
     res.redirect('/login')
 }
 
+isLoggedOut =(req, res, next) =>{
+    if(!req.isAuthenticated()){
+        return next()
+    }
+    res.redirect('/dashboard')
+}
+
 /* END MIDDLEWARES */
 
 
 
 /* Logging in Routes */
 
-app.get('/login', (req, res)=>{
+app.get('/login', isLoggedOut, (req, res)=>{
     res.render('login.ejs')
 })
 // login authentication and redirection
@@ -112,7 +119,7 @@ app.get('/logout', (req, res)=>{
 
 /* Register Routes */
 
-app.get('/register', (req, res)=>{
+app.get('/register', isLoggedOut, (req, res)=>{
     res.render('register.ejs')
 })
 
