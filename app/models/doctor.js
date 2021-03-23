@@ -5,9 +5,30 @@ const Schema = mongoose.Schema;
 
 //Creat a schema
 
-const doctorSchema = new Schema ({
+let DoctorSchema = new mongoose.Schema ({
+  postedBy: {
+    type: Schema.ObjectId,
+    ref: 'User'
+  },
   name: {
       type: String,
-      required: true
-  }
+      required: [true, "Must have Doctor Name."]
+  },
+  startV: {
+    type: Date,
+    required: [true, "Must have a start visit date."]
+  },
+  endV: {
+    type: Date,
+    required: false
+  },
+  phone: String,
+  adddress: String,
+  city: String,
+  state: String,
+  zip: String
+
 })
+
+
+module.exports = mongoose.model('Doctor', DoctorSchema);

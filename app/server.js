@@ -22,6 +22,12 @@ mongoose.connect(keys.mongoURI,
 
 //importing mongoose schema
 var UserModel = require("./models/user");
+var DoctorModel = require("./models/doctor")
+var TreatmentModel = require("./models/treatment")
+var SymptomModel = require("./models/symptom")
+
+
+
 
 app.use(bodyParser.json()); // in_added support for json encoded bodies
 app.use(bodyParser.urlencoded({extended:true})); // support encoded bodies
@@ -100,11 +106,9 @@ app.post('/login', passport.authenticate('local', //passport.authenticate is mid
     //nothing is needed inside callback function bc middleware has handled route handling
 });
 
-
 app.get('/dashboard', isLoggedIn, (req, res) =>{
     res.render('dashboard.ejs')
 });
-
 
 //logout route
 app.get('/logout', (req, res)=>{
@@ -114,11 +118,7 @@ app.get('/logout', (req, res)=>{
 
 
 
-
-
-
 /* Register Routes */
-
 app.get('/register', isLoggedOut, (req, res)=>{
     res.render('register.ejs')
 })
@@ -150,9 +150,7 @@ app.post('/register', (req, res)=>{
 
 })
 
-
 /* End Register */
-
 
 
 /* Add Doctor Routes */
@@ -165,9 +163,31 @@ app.get('/doctor', isLoggedIn, (req, res)=>{
 app.post('/doctor', isLoggedIn, urlencodedParser, (req,res)=> {
     if(!req.body) return res.sendStatus(400)
     const data = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
-    console.log(data)
-    res.redirect('/dashboard')
-})
+    //console.log(data)
+
+    let newDoctor = new DoctorModel({
+         //postedBy: username._id,
+         postedBy: req.user,
+         name: req.body.doctor,
+         startV: req.body.startVisit,
+         endV: req.body.endVisit,
+         phone: req.body.phone,
+         address: req.body.address,
+         city: req.body.city,
+         state: req.body.state,
+         zip: req.body.zip
+    });
+     
+    newDoctor.save(function(error, result){
+        if(error){
+            console.log('Error: ', error)
+            mongoose.disconnect()
+        } else {
+            console.log('Saved new Doctor: ', result)
+            res.status(201).json(result);
+        }
+    });
+});
 /* End Doctor Routes */
 
 
@@ -179,13 +199,33 @@ app.get('/symptom', isLoggedIn, (req, res)=>{
 
 
 app.post('/symptom', isLoggedIn, urlencodedParser, (req,res)=> {
+    console.log(req)
     if(!req.body) return res.sendStatus(400)
     const data = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
-    console.log(data)
-    let bodyParts = data["Body Locations"]
+
+    
+    let newSymptom = new SymptomModel({
+        postedBy: req.user,
+        symptomDate: req.body.start,
+        painlevel: req.body["Pain Level"],
+        bodyLocations: req.body["Body Locations"]
+   });
+    
+   newSymptom.save(function(error, result){
+       if(error){
+           console.log('Error: ', error)
+           mongoose.disconnect()
+       } else {
+           console.log('Saved new Symptom: ', result)
+           res.status(201).json(result);
+       }
+   });
 
 
-    res.redirect('/dashboard')
+
+
+
+
 })
 
 /* End Symptom Routes */
@@ -195,7 +235,7 @@ app.post('/symptom', isLoggedIn, urlencodedParser, (req,res)=> {
 
 /* Add Treatment Routes */
 app.get('/treatment', isLoggedIn, (req, res)=>{
-res.redirect('/dashboard')
+res.render('treatment.ejs')
 })
 
 
@@ -204,8 +244,29 @@ app.post('/treatment', isLoggedIn, urlencodedParser, (req,res)=> {
     if(!req.body) return res.sendStatus(400)
     const data = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
     console.log(data)
-   
-    res.redirect('/dashboard')
+
+    
+    let newTreatment = new TreatmentModel({
+        postedBy: req.user,
+        treatment: req.body.treatment,
+        start: req.body.start,
+        end: req.body.end,
+        effective: req.body.effective,
+        review: req.body.review
+   });
+    
+   newTreatment.save(function(error, result){
+       if(error){
+           console.log('Error: ', error)
+           mongoose.disconnect()
+       } else {
+           console.log('Saved new Treatment: ', result)
+           res.status(201).json(result);
+       }
+   });
+
+
+
 })
 /* End Treatment Routes */
 
