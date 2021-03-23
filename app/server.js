@@ -61,15 +61,9 @@ app.get('/', (req, res)=>{
     res.render('home.ejs')
 })
 
-
-
-
 app.get('/contact', (req, res)=>{
     res.render('contact.ejs')
 })
-
-
-
 
 /* MIDDLEWARE */
 
@@ -91,7 +85,6 @@ isLoggedOut =(req, res, next) =>{
 /* END MIDDLEWARES */
 
 
-
 /* Logging in Routes */
 
 app.get('/login', isLoggedOut, (req, res)=>{
@@ -107,16 +100,16 @@ app.post('/login', passport.authenticate('local', //passport.authenticate is mid
 });
 
 app.get('/dashboard', isLoggedIn, (req, res) =>{
-    res.render('dashboard.ejs')
+    res.render('dashboard.ejs', {
+        user: req.user
+    })
 });
 
 //logout route
 app.get('/logout', (req, res)=>{
     req.logout(); //passport destroys all user data in session
-    res.redirect('/'); //redirects back to root route
+    res.redirect('/login'); //redirects back to login route
 });
-
-
 
 /* Register Routes */
 app.get('/register', isLoggedOut, (req, res)=>{
@@ -147,9 +140,7 @@ app.post('/register', (req, res)=>{
             });
         }
     }) 
-
-})
-
+});
 /* End Register */
 
 
@@ -220,16 +211,9 @@ app.post('/symptom', isLoggedIn, urlencodedParser, (req,res)=> {
            res.status(201).json(result);
        }
    });
-
-
-
-
-
-
 })
 
 /* End Symptom Routes */
-
 
 
 
@@ -264,18 +248,8 @@ app.post('/treatment', isLoggedIn, urlencodedParser, (req,res)=> {
            res.status(201).json(result);
        }
    });
-
-
-
 })
 /* End Treatment Routes */
-
-
-
-
-
-
-
 
 
 //Listener
