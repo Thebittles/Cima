@@ -3,7 +3,7 @@
   <%- include('partials/header.ejs')%>
   <%- include('partials/navbar-loggedin.ejs')%>
   <br>
- <h1 class="text-center">Welcome <%= user.firstName %>, to your CIMA Dashboard!</h1>
+ <h1 class="text-center">Welcome ${user}, to your CIMA Dashboard!</h1>
 </section>
 <!-- Section 1 to Add Information and view logged information -->
 <section id="dashSectionOne">
@@ -11,13 +11,13 @@
       <div class="row">
           <div class="col text-center">
               <div class="btn-group" role="group" aria-label="Basic example">
-                  <form action="/symptom">
+                  <form action="/symptom" method="GET">
                       <button type="submit" class="btn btn-light" value="Add Symptom">Add Symptom</button>
                   </form>
-                  <form action="/doctor">
+                  <form action="/treatment" method="GET">
                       <button type="submit" class="btn btn-light" value="Add Treatment">Add Treatment</button>
                   </form>
-                  <form action="/treatment">
+                  <form action="/doctor" method="GET">
                       <button type="submit" class="btn btn-light" value="Add Doctor">Add Doctor</button>
                   </form>
                 </div>

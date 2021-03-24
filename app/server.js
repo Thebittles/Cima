@@ -175,7 +175,7 @@ app.post('/doctor', isLoggedIn, urlencodedParser, (req,res)=> {
             mongoose.disconnect()
         } else {
             console.log('Saved new Doctor: ', result)
-            res.status(201).json(result);
+            res.redirect('/dashboard')
         }
     });
 });
@@ -190,7 +190,7 @@ app.get('/symptom', isLoggedIn, (req, res)=>{
 
 
 app.post('/symptom', isLoggedIn, urlencodedParser, (req,res)=> {
-    console.log(req)
+
     if(!req.body) return res.sendStatus(400)
     const data = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
 
@@ -208,7 +208,8 @@ app.post('/symptom', isLoggedIn, urlencodedParser, (req,res)=> {
            mongoose.disconnect()
        } else {
            console.log('Saved new Symptom: ', result)
-           res.status(201).json(result);
+           res.redirect('/dashboard')
+           //res.status(201).json(result);
        }
    });
 })
@@ -221,8 +222,6 @@ app.post('/symptom', isLoggedIn, urlencodedParser, (req,res)=> {
 app.get('/treatment', isLoggedIn, (req, res)=>{
 res.render('treatment.ejs')
 })
-
-
 
 app.post('/treatment', isLoggedIn, urlencodedParser, (req,res)=> {
     if(!req.body) return res.sendStatus(400)
@@ -245,7 +244,8 @@ app.post('/treatment', isLoggedIn, urlencodedParser, (req,res)=> {
            mongoose.disconnect()
        } else {
            console.log('Saved new Treatment: ', result)
-           res.status(201).json(result);
+           res.redirect('/dashboard')
+           //res.status(201).json(result);
        }
    });
 })
