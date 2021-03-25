@@ -2,96 +2,86 @@
 <%- include('partials/navbar-loggedin.ejs')%>
 
 
-    <form class="form-horizontal" action="/doctor" method="POST">
-        <fieldset>
-        
-        <!-- Form Name -->
-        <legend>Add Doctor</legend>
-        
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="Doctor Name">Doctor</label>  
-          <div class="col-md-4">
-          <input id="Doctor Name" name="Doctor Name" type="text" placeholder="Enter Doctors Name" class="form-control input-md" required="">
-          <span class="help-block">"Dr. XXX"</span>  
-          </div>
-        </div>
-        
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="Phone">Phone</label>  
-          <div class="col-md-4">
-          <input id="Phone" name="Phone" type="text" placeholder="Enter Phone Number" class="form-control input-md">
-          <span class="help-block">(XXX) XXX-XXXX</span>  
-          </div>
-        </div>
-        
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="Email">Email</label>  
-          <div class="col-md-4">
-          <input id="Email" name="Email" type="text" placeholder="Enter Doctor email" class="form-control input-md">
-          <span class="help-block">XXXXX@XXX.com</span>  
-          </div>
-        </div>
-        
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="Country">Country</label>  
-          <div class="col-md-4">
-          <input id="Country" name="Country" type="text" placeholder="Country" class="form-control input-md">
-          <span class="help-block">United States</span>  
-          </div>
-        </div>
-        
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="State">State</label>  
-          <div class="col-md-4">
-          <input id="State" name="State" type="text" placeholder="State" class="form-control input-md">
-          <span class="help-block">TX</span>  
-          </div>
-        </div>
-        
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="City">City</label>  
-          <div class="col-md-4">
-          <input id="City" name="City" type="text" placeholder="Enter City Name" class="form-control input-md">
-          <span class="help-block"> Austin</span>  
-          </div>
-        </div>
-        
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="Address">Address</label>  
-          <div class="col-md-4">
-          <input id="Address" name="Address" type="text" placeholder="Enter Street Name &amp; Number" class="form-control input-md">
-          <span class="help-block">555 Elmo st.</span>  
-          </div>
-        </div>
-        
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="Zip">Zip</label>  
-          <div class="col-md-4">
-          <input id="Zip" name="Zip" type="text" placeholder="78745" class="form-control input-md">
-            
-          </div>
-        </div>
-        
+<div class="form-wrapper">
+    <div class="form-div mx-4 my-3 ">
+
+        <form action="/doctor" method="POST">
+            <!-- Doctor Name -->
+            <div class="form-group row">
+                <label for="doctor" class="mt-3 col-1 col-form-label">Doctor Name</label>
+                <div class="mt-3 col-4">
+                    <input class="form-control" type="text" name="doctor" id="doctor" placeholder="Dr. Devin">
+                </div>
+            </div>
+            <!-- Start & End Visit -->
+            <div class="form-group row">
+                <label for="startVisit" class="col-1 col-form-label">Started Visit:</label>
+                <div class="col-4">
+                  <input class="form-control" type="date" name="startVisit"  id="startVisit">
+                </div>
+                <label for="endVisit" class="col-1 col-form-label">End Visit:</label>
+                <div class="col-4">
+                  <input class="form-control" type="date" name="endVisit" id="endVisit">
+                </div>
+            </div>
+
+            <!-- end visits -->
+
+            <div class="row">
+                <h4 class="mt-2 col-12 ">Contact</h3>
+            </div>
+            <div class="row">
+              <div class="form-group col-6">
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control" name="phone" id="phone" placeholder="1234 Main St">
+              </div>
+              <div class="form-group col-6">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" name="email" id="email" placeholder="HealthInfo@email.com">
+              </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" name="address" id="address" placeholder="1234 Main St">
+              </div>
+              <div class="form-row">
+                <div class="form-group col-6">
+                  <label for="city">City</label>
+                  <input type="text" name="city" class="form-control" id="city">
+                </div>
+                <div class="form-group col-4">
+                  <label for="state">State</label>
+                  <input type="text" name="state" class="form-control" id="state">
+                </div>
+                <div class="form-group col-2">
+                  <label for="zip">Zip</label>
+                  <input type="text" class="form-control" name="zip" id="zip">
+                </div>
+              </div>
+
+
         <!-- Button -->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="Submit"></label>
-          <div class="col-md-4">
-            <button id="Submit" name="Submit" class="btn btn-primary">Submit</button>
+            <label class="col-md-4 control-label" for="Submit"></label>
+            <div class="col-md-4">
+              <button id="Submit" name="Submit" class="btn btn-primary">Submit</button>
+            </div>
           </div>
-        </div>
-        
-        </fieldset>
-        </form>
-        
-        
 
 
-        <%- include('partials/footer.ejs') %>
+
+
+        </form><!-- end form --> 
+
+
+    </div> <!-- form div -->
+</div><!-- end wrapper -->
+
+
+
+
+
+
+<%- include('partials/footer.ejs') %>

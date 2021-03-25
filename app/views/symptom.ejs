@@ -1,96 +1,120 @@
 <%- include('partials/header.ejs')%>
 <%- include('partials/navbar-loggedin.ejs')%>
 
-    <div id="wrapperSymptom">
-    <form class="form-horizontal" action="/symptom" method="POST">
-      <fieldset>
-      
-      <!-- Form Name -->
-      <legend>Symptom</legend>
-      
-      <!-- Multiple Checkboxes (inline) -->
-      <div class="form-group">
-        <label class="col-md-4 control-label" for="Body Locations">Body Locations</label>
-        <div class="col-md-4">
-          <label class="checkbox-inline" for="Body Locations-0">
-            <input type="checkbox" name="Body Locations" id="Body Locations-0" value="r-ovary">
-            R- Ovary
-          </label>
-          <label class="checkbox-inline" for="Body Locations-1">
-            <input type="checkbox" name="Body Locations" id="Body Locations-1" value="l-ovary">
-            L- Ovary
-          </label>
-          <label class="checkbox-inline" for="Body Locations-2">
-            <input type="checkbox" name="Body Locations" id="Body Locations-2" value="uterus">
-            Uterus
-          </label>
-          <label class="checkbox-inline" for="Body Locations-3">
-            <input type="checkbox" name="Body Locations" id="Body Locations-3" value="low-back">
-            Lower Back
-          </label>
-          <label class="checkbox-inline" for="Body Locations-4">
-            <input type="checkbox" name="Body Locations" id="Body Locations-4" value="up-ab">
-            Upper Abdomen
-          </label>
-          <label class="checkbox-inline" for="Body Locations-5">
-            <input type="checkbox" name="Body Locations" id="Body Locations-5" value="low-ab">
-            Lower Abdomen
-          </label>
-          <label class="checkbox-inline" for="Body Locations-6">
-            <input type="checkbox" name="Body Locations" id="Body Locations-6" value="l-leg">
-            L-Leg
-          </label>
-          <label class="checkbox-inline" for="Body Locations-7">
-            <input type="checkbox" name="Body Locations" id="Body Locations-7" value="r-leg">
-            R-Leg
-          </label>
-          <label class="checkbox-inline" for="Body Locations-8">
-            <input type="checkbox" name="Body Locations" id="Body Locations-8" value="head">
-            Head
-          </label>
-          <label class="checkbox-inline" for="Body Locations-9">
-            <input type="checkbox" name="Body Locations" id="Body Locations-9" value="l-breast">
-            L-Breast
-          </label>
-          <label class="checkbox-inline" for="Body Locations-10">
-            <input type="checkbox" name="Body Locations" id="Body Locations-10" value="r-breast">
-            R-Breast
-          </label>
-        </div>
-      </div>
-      
-      <!-- Select Multiple -->
-      <div class="form-group">
-        <label class="col-md-4 control-label" for="Pain Level">Pain Level</label>
-        <div class="col-md-2">
-          <select id="Pain Level" name="Pain Level" class="form-control" multiple="multiple">
-            <option value="1">0 - No Pain</option>
-            <option value="2">1</option>
-            <option value="3">2</option>
-            <option value="4">3</option>
-            <option value="5">4</option>
-            <option value="6">5 - Moderate</option>
-            <option value="7">6</option>
-            <option value="8">7</option>
-            <option value="9">8</option>
-            <option value="10">9</option>
-            <option value="">10 - Unbearable</option>
-          </select>
-        </div>
-      </div>
+    
 
-      
-      <!-- Button -->
-      <div class="form-group">
-        <label class="col-md-4 control-label" for="Symptom"></label>
-        <div class="col-md-4">
-          <button id="Symptom" name="Symptom" class="btn btn-inverse">Add Symptom</button>
-        </div>
-      </div>
-      
-      </fieldset>
-      </form>
-      
-      </div> <!-- closes wrapper -->
+<div class="wrapper symptom-wrapper">
+    <div class="symptom-form mx-4">
+        <form class="form-horizontal" action="/symptom" method="POST">
+            <legend>Symptom</legend>
 
-      <%- include('partials/footer.ejs') %>
+            <div class="form-group row">
+            <!-- Date -->
+            <label for="start" class="col-form-label ml-4">Date:</label>
+            <div class="col-2">
+              <input class="form-control" type="date" name="start"  id="start">
+            </div>
+            
+ <!-- Select Multiple -->
+
+    <label class="col-1 control-label" for="Pain Level">Pain Level</label>
+    <div class="col-3">
+      <select id="Pain Level" name="Pain Level" class="form-control" multiple="multiple">
+        <option value="0">0 - No Pain</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 - Moderate</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10" data-subtext="Unbearable">10</option>
+      </select>
+    </div>
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+ <!-- Multi Checkbox Body locaitons -->
+ <div class="form-group">
+    <div class="col-6">
+      <label class="checkbox-inline mr-2" for="Body Locations-0">
+        <input type="checkbox" name="Body Locations" id="Body Locations-0" value="r-ovary">
+        R- Ovary
+      </label>
+      <label class="checkbox-inline mr-2" for="Body Locations-1">
+        <input type="checkbox" name="Body Locations" id="Body Locations-1" value="l-ovary">
+        L- Ovary
+      </label>
+      <label class="checkbox-inline mr-2" for="Body Locations-2">
+        <input type="checkbox" name="Body Locations" id="Body Locations-2" value="uterus">
+        Uterus
+      </label>
+      <label class="checkbox-inline mr-2" for="Body Locations-3">
+        <input type="checkbox" name="Body Locations" id="Body Locations-3" value="low-back">
+        Lower Back
+      </label>
+      <label class="checkbox-inline mr-2" for="Body Locations-4">
+        <input type="checkbox" name="Body Locations" id="Body Locations-4" value="up-ab">
+        Upper Abdomen
+      </label>
+      <label class="checkbox-inline mr-2" for="Body Locations-5">
+        <input type="checkbox" name="Body Locations" id="Body Locations-5" value="low-ab">
+        Lower Abdomen
+      </label>
+      <label class="checkbox-inline mr-2" for="Body Locations-6">
+        <input type="checkbox" name="Body Locations" id="Body Locations-6" value="l-leg">
+        L-Leg
+      </label>
+      <label class="checkbox-inline mr-2" for="Body Locations-7">
+        <input type="checkbox" name="Body Locations" id="Body Locations-7" value="r-leg">
+        R-Leg
+      </label>
+      <label class="checkbox-inline mr-2" for="Body Locations-8">
+        <input type="checkbox" name="Body Locations" id="Body Locations-8" value="head">
+        Head
+      </label>
+      <label class="checkbox-inline mr-2" for="Body Locations-9">
+        <input type="checkbox" name="Body Locations" id="Body Locations-9" value="l-breast">
+        L-Breast
+      </label>
+      <label class="checkbox-inline mr-2" for="Body Locations-10">
+        <input type="checkbox" name="Body Locations" id="Body Locations-10" value="r-breast">
+        R-Breast
+      </label>
+    </div>
+  </div>
+<!-- end body locations -->
+
+
+
+
+  
+  <!-- Button -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="Symptom"></label>
+    <div class="col-md-4">
+      <button id="Symptom" name="Symptom" class="btn btn-inverse">Add Symptom</button>
+    </div>
+  </div>
+
+
+
+        </form> 
+    </div>
+</div> <!-- close wrapper -->
+
+
+
+
+<%- include('partials/footer.ejs') %>
