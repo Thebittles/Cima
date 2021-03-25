@@ -16,7 +16,12 @@ let SymptomSchema = new mongoose.Schema ({
    },
    bodyLocations: {
        type: Array,
+       required: [true, "Symptom must have a body location"]
        
+   },
+   typePain: {
+     type: Array,
+     required: [true, "Please Select a type of pain"]
    }
 
 
