@@ -7,6 +7,7 @@ let SymptomSchema = new mongoose.Schema ({
      type: Schema.ObjectId,
      ref: 'User'
    },
+   created: String,
    symptomDate: {
        type: Date,
        required: [true, "Symptom must have a date"]

@@ -10,6 +10,7 @@ let DoctorSchema = new mongoose.Schema ({
     type: Schema.ObjectId,
     ref: 'User'
   },
+  created: String,
   name: {
       type: String,
       required: [true, "Must have Doctor Name."]

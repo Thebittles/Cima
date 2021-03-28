@@ -4,6 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const moment = require('moment')
 // strategy that sllows us to auth with username/password
 const LocalStrategy = require('passport-local');
 // uses mongoose as a library to store data in mongodb with local strategy
@@ -12,6 +13,10 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const PORT = process.env.PORT || 3000
 const keys = require('./config/keys')
 app.use(express.static('public'))
+
+// formating moments date 
+let now = moment().format('YYYY-MM-DD')
+
 
 //connecting mongoose
 mongoose.connect(keys.mongoURI,
@@ -24,9 +29,8 @@ mongoose.connect(keys.mongoURI,
 var UserModel = require("./models/user");
 var DoctorModel = require("./models/doctor")
 var TreatmentModel = require("./models/treatment")
-var SymptomModel = require("./models/symptom")
-
-
+var SymptomModel = require("./models/symptom");
+const symptom = require('./models/symptom');
 
 
 app.use(bodyParser.json()); // in_added support for json encoded bodies
@@ -87,9 +91,7 @@ isLoggedOut =(req, res, next) =>{
 
 /* Logging in Routes */
 
-app.get('/login', isLoggedOut, (req, res)=>{
-    res.render('login.ejs')
-})
+
 // login authentication and redirection
 app.post('/login', passport.authenticate('local', //passport.authenticate is middleware function
 {
@@ -101,31 +103,30 @@ app.post('/login', passport.authenticate('local', //passport.authenticate is mid
 
 app.get('/dashboard', isLoggedIn, (req, res) =>{
     res.render('dashboard.ejs', {
-        user: req.user
+        user: req.user.firstName,
+        data: `I would be for the last 30 days from ${now}`
     })
 });
 
-//logout route
-app.get('/logout', (req, res)=>{
-    req.logout(); //passport destroys all user data in session
-    res.redirect('/login'); //redirects back to login route
-});
+
 
 /* Register Routes */
 app.get('/register', isLoggedOut, (req, res)=>{
     res.render('register.ejs')
 })
 
+
+
 app.post('/register', (req, res)=>{
     if(!req.body) return res.sendStatus(400)
     const data = JSON.parse(JSON.stringify(req.body));
-    console.log(data)
      
     var newUser = new UserModel(
         {username: req.body.email,
          firstName: req.body.firstname,
          lastName: req.body.lastname,
-         DOB: req.body.DOB
+         DOB: moment(req.body.DOB).format('YYYY-MM-DD'),
+         created: now
     });
 
     UserModel.register(newUser, req.body.password, function(err, user){
@@ -159,14 +160,16 @@ app.post('/doctor', isLoggedIn, urlencodedParser, (req,res)=> {
     let newDoctor = new DoctorModel({
          //postedBy: username._id,
          postedBy: req.user,
+         created: now,
          name: req.body.doctor,
-         startV: req.body.startVisit,
-         endV: req.body.endVisit,
+         startV: moment(req.body.startV).format('YYYY-MM-DD'),
+         endV: moment(req.body.endV).format('YYYY-MM-DD'),
          phone: req.body.phone,
          address: req.body.address,
          city: req.body.city,
          state: req.body.state,
-         zip: req.body.zip
+         zip: req.body.zip,
+
     });
      
     newDoctor.save(function(error, result){
@@ -197,7 +200,8 @@ app.post('/symptom', isLoggedIn, urlencodedParser, (req,res)=> {
     
     let newSymptom = new SymptomModel({
         postedBy: req.user,
-        symptomDate: req.body.start,
+        created: now,
+        symptomDate: moment(req.body.symptomDate).format('YYYY-MM-DD'),
         painlevel: req.body["Pain Level"],
         bodyLocations: req.body["Body Locations"],
         typePain: req.body.typePain
@@ -232,9 +236,10 @@ app.post('/treatment', isLoggedIn, urlencodedParser, (req,res)=> {
     
     let newTreatment = new TreatmentModel({
         postedBy: req.user,
+        created: now,
         treatment: req.body.treatment,
-        start: req.body.start,
-        end: req.body.end,
+        start: moment(req.body.start).format('YYYY-MM-DD'),
+        end: moment(req.body.end).format('YYYY-MM-DD'),
         effective: req.body.effective,
         review: req.body.review
    });
@@ -251,6 +256,43 @@ app.post('/treatment', isLoggedIn, urlencodedParser, (req,res)=> {
    });
 })
 /* End Treatment Routes */
+
+
+
+
+/* Query Routes */
+app.get('/dashboard/week', isLoggedIn, urlencodedParser, (req, res)=> {
+    let week = moment().subtract(7, 'd').format('YYYY-MM-DD')
+    console.log(week)
+    Symptom.find({postedBy : req.user._id, created: {$gte: `${week}`} })
+
+
+
+    res.render('dashboard.ejs',{
+        user: req.user.firstName,
+        data: `I would be for the past week from: ${now}`
+    })
+})
+
+
+app.get('/dashboard/alltime', isLoggedIn, urlencodedParser, (req, res)=> {
+    res.render('dashboard.ejs',{
+        user: req.user.firstName,
+        data: "I would be all time"
+    })
+})
+
+app.get('/dashboard', isLoggedIn, urlencodedParser, (req, res)=> {
+    res.render('dashboard.ejs',{
+        user: req.user.firstName,
+        data: `I would be past 30days from ${now}`
+    })
+})
+/* End Query Routes */
+
+
+require("./routes/Auth")(app);
+
 
 
 //Listener

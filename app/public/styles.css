@@ -7,7 +7,7 @@ color:rgb(0, 0, 0)
 }
 
 
-#contact, #login, #registerContainer {
+#contact, #login, #registerContainer, #symptomForm, #treatmentForm, #doctorForm {
     height: 100%;
     width: 90%;
     padding: 1%;
@@ -16,10 +16,7 @@ color:rgb(0, 0, 0)
     box-shadow: 5px 10px 10px #888888;
     border-radius: 10px;
 }
-/* contact page name, email, textarea input responsive 
-#c-name, #c-email, #textarea {
-    width: 50%;
-}*/
+
 
 /* Homepage */
 
@@ -54,12 +51,18 @@ color:rgb(0, 0, 0)
 
 
 /* Dashboard */
-.render-form {
-    background-color: blueviolet;
-    height: 100px;
-    width: 200px;
-}
 
+.username {
+    font-size: 1.2em;
+    font-weight: bold;
+
+  }
+
+.username:hover {
+    text-shadow: 0 0 28px #524A5C;
+    transition-delay: .5s;
+}
+  
 
 
 .box-container {
@@ -86,6 +89,7 @@ color:rgb(0, 0, 0)
 background-color:rgba(150,150,150,0.2);
 padding: 20px;
 text-transform: uppercase;
+box-shadow: 0 5px 15px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 
 
@@ -113,7 +117,9 @@ text-transform: uppercase;
 
 
 
-
+.btn:hover{
+    background-color: #BAB4BB;
+}
 
 
 
@@ -171,15 +177,6 @@ background-color: #524A5C;
 }
 
 /* Doctor */
-.form-wrapper {
-    background-color: gray;
-    color: rgb(238, 235, 235);
-    border-radius: 10px;
-    text-shadow: 1px 1px 4px black;
-    box-shadow: 5px 10px 10px #888888;
-    margin: 0 auto;
-    padding: 10px;
 
-}
 
 /* End doctor */

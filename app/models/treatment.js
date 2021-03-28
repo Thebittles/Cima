@@ -7,6 +7,7 @@ let TreatmentSchema = new mongoose.Schema ({
      type: Schema.ObjectId,
      ref: 'User'
    },
+   created: String,
    treatment: {
      type: String,
      required: [true, "Must have a treatment name."]
