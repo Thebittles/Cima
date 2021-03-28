@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 const moment = require('moment')
 
-let UserSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     username: String,
     firstName: String,
     lastName: String,

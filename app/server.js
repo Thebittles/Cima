@@ -29,7 +29,8 @@ mongoose.connect(keys.mongoURI,
 var UserModel = require("./models/user");
 var DoctorModel = require("./models/doctor")
 var TreatmentModel = require("./models/treatment")
-var SymptomModel = require("./models/symptom")
+var SymptomModel = require("./models/symptom");
+const symptom = require('./models/symptom');
 
 
 app.use(bodyParser.json()); // in_added support for json encoded bodies
@@ -90,9 +91,7 @@ isLoggedOut =(req, res, next) =>{
 
 /* Logging in Routes */
 
-app.get('/login', isLoggedOut, (req, res)=>{
-    res.render('login.ejs')
-})
+
 // login authentication and redirection
 app.post('/login', passport.authenticate('local', //passport.authenticate is middleware function
 {
@@ -104,15 +103,12 @@ app.post('/login', passport.authenticate('local', //passport.authenticate is mid
 
 app.get('/dashboard', isLoggedIn, (req, res) =>{
     res.render('dashboard.ejs', {
-        user: req.user
+        user: req.user.firstName,
+        data: `I would be for the last 30 days from ${now}`
     })
 });
 
-//logout route
-app.get('/logout', (req, res)=>{
-    req.logout(); //passport destroys all user data in session
-    res.redirect('/login'); //redirects back to login route
-});
+
 
 /* Register Routes */
 app.get('/register', isLoggedOut, (req, res)=>{
@@ -260,6 +256,43 @@ app.post('/treatment', isLoggedIn, urlencodedParser, (req,res)=> {
    });
 })
 /* End Treatment Routes */
+
+
+
+
+/* Query Routes */
+app.get('/dashboard/week', isLoggedIn, urlencodedParser, (req, res)=> {
+    let week = moment().subtract(7, 'd').format('YYYY-MM-DD')
+    console.log(week)
+    Symptom.find({postedBy : req.user._id, created: {$gte: `${week}`} })
+
+
+
+    res.render('dashboard.ejs',{
+        user: req.user.firstName,
+        data: `I would be for the past week from: ${now}`
+    })
+})
+
+
+app.get('/dashboard/alltime', isLoggedIn, urlencodedParser, (req, res)=> {
+    res.render('dashboard.ejs',{
+        user: req.user.firstName,
+        data: "I would be all time"
+    })
+})
+
+app.get('/dashboard', isLoggedIn, urlencodedParser, (req, res)=> {
+    res.render('dashboard.ejs',{
+        user: req.user.firstName,
+        data: `I would be past 30days from ${now}`
+    })
+})
+/* End Query Routes */
+
+
+require("./routes/Auth")(app);
+
 
 
 //Listener
