@@ -91,14 +91,21 @@
         <div class="dash-wrapper">
             <h2 class="text-center">History</h2>
             <div class="row">
+
                 <div class="col-4">
-                    <button class="btn btn-md btn-block btn-dark">Week</button>
+                    <form>
+                    <button type='submit' class="btn btn-md btn-block btn-dark" formaction="/dashboard/week" formmethod="GET">Week</button>
+                    </form>
                 </div>
                 <div class="col-4">
-                    <button class="btn btn-md btn-block btn-dark">30 Days</button>
+                    <form>
+                    <button type='submit' class="btn btn-md btn-block btn-dark" formaction="/dashboard" formmethod="GET">30 Days</button>
+                    </form>
                 </div>
                 <div class="col-4">
-                    <button class="btn btn-md btn-block btn-dark" formaction="/alltime">All Time</button>
+                    <form>
+                     <button type='submit' class="btn btn-md btn-block btn-dark" formaction="/dashboard/alltime" formmethod="GET">All Time</button>
+                    </form>
                 </div>
             </div>
             

@@ -11,9 +11,17 @@ const {isLoggedIn} = require('../../helpers/auth')
 module.exports = (app) => {
     app.use(bodyParser.urlencoded({ extended: true }));
 
+
     /* NavBar & Landing */
     app.get('/', (req, res)=>{
         res.render('home.ejs')
+
+
+   
+    //login
+    app.get('/login', isLoggedOut, (req, res)=>{
+        res.render('login.ejs')
+
     })
 
     app.get('/contact', (req, res)=>{

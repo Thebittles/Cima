@@ -26,11 +26,11 @@ mongoose.connect(keys.mongoURI,
 });
 
 //importing mongoose schema
-var UserModel = require("./models/user");
-var DoctorModel = require("./models/doctor")
-var TreatmentModel = require("./models/treatment")
-var SymptomModel = require("./models/symptom");
-const symptom = require('./models/symptom');
+const UserModel = require("./models/user");
+const DoctorModel = require("./models/doctor")
+const TreatmentModel = require("./models/treatment")
+const SymptomModel = require("./models/symptom");
+
 
 
 app.use(bodyParser.json()); // in_added support for json encoded bodies
@@ -56,6 +56,41 @@ passport.use(new LocalStrategy(UserModel.authenticate()));
 passport.serializeUser(UserModel.serializeUser());
 // load functions to read from db into passport function -- whenever user uses a protected route
 passport.deserializeUser(UserModel.deserializeUser());
+
+
+app.get('/dashboard', isLoggedIn, (req, res) =>{
+    let thirtyDays = moment().subtract(30, 'd').format('YYYY-MM-DD')
+    SymptomModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} }, function(error, results){
+        if(error){
+            console.log('Error: ', error)
+        } else {
+            console.log('Found all symptoms from past 30da: '/* , results */)
+        }
+    })
+
+    TreatmentModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} }, function(error, results){
+        if(error){
+            console.log('Error: ', error)
+        } else {
+            console.log('Found all Treatments from past 30da: '/* , results */)
+        }
+    })
+
+    DoctorModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} }, function(error, results){
+        if(error){
+            console.log('Error: ', error)
+        } else {
+            console.log('Found all Doctors from past 30da: '/* , results */)
+        }
+    })
+
+    res.render('dashboard.ejs', {
+        user: req.user.firstName,
+        data: `I would be for the last 30 days from ${now}`
+    })
+});
+
+
 
 
 
@@ -137,30 +172,75 @@ app.post('/treatment', isLoggedIn, urlencodedParser, (req,res)=> {
 app.get('/dashboard/week', isLoggedIn, urlencodedParser, (req, res)=> {
     let week = moment().subtract(7, 'd').format('YYYY-MM-DD')
     console.log(week)
-    Symptom.find({postedBy : req.user._id, created: {$gte: `${week}`} })
+    SymptomModel.find({postedBy : req.user._id, created: {$gte: `${week}`} }, function(error, results){
+        if(error){
+            console.log('Error: ', error)
+        } else {
+            console.log('Found all symptoms from past week: ', results)
+        }
+    })
+    
 
+    TreatmentModel.find({postedBy : req.user._id, created: {$gte: `${week}`} }, function(error, results){
+        if(error){
+            console.log('Error: ', error)
+        } else {
+            console.log('Found all Treatments from past week: ', results)
+        }
+    })
 
+    DoctorModel.find({postedBy : req.user._id, created: {$gte: `${week}`} }, function(error, results){
+        if(error){
+            console.log('Error: ', error)
+        } else {
+            console.log('Found all Doctors from past week: ', results)
+        }
+    })
 
     res.render('dashboard.ejs',{
         user: req.user.firstName,
-        data: `I would be for the past week from: ${now}`
+        data: `I would be for the past week from: ${now}`,
     })
 })
 
 
 app.get('/dashboard/alltime', isLoggedIn, urlencodedParser, (req, res)=> {
+    let allTime = req.user.created
+
+
+    SymptomModel.find({postedBy : req.user._id, created: {$gte: `${allTime}`} }, function(error, results){
+        if(error){
+            console.log('Error: ', error)
+        } else {
+            console.log('Found all symptoms from since account was created: '/* , results */)
+        }
+    })
+
+    TreatmentModel.find({postedBy : req.user._id, created: {$gte: `${allTime}`} }, function(error, results){
+        if(error){
+            console.log('Error: ', error)
+        } else {
+            console.log('Found all Treatments from since account was created: '/* , results */)
+        }
+    })
+
+    DoctorModel.find({postedBy : req.user._id, created: {$gte: `${allTime}`} }, function(error, results){
+        if(error){
+            console.log('Error: ', error)
+        } else {
+            console.log('Found all Doctors from since account was created: '/* , results */)
+        }
+    })
+
+    
+    
+
     res.render('dashboard.ejs',{
         user: req.user.firstName,
         data: "I would be all time"
     })
 })
 
-app.get('/dashboard', isLoggedIn, urlencodedParser, (req, res)=> {
-    res.render('dashboard.ejs',{
-        user: req.user.firstName,
-        data: `I would be past 30days from ${now}`
-    })
-})
 /* End Query Routes */
 
 
