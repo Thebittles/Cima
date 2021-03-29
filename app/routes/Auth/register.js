@@ -1,7 +1,10 @@
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const User = require('../../models/user');
+const moment = require('moment')
 const {isLoggedOut} = require('../../helpers/auth');
+
+const now = moment().format('YYYY-MM-DD')
 
 module.exports = (app) => {
   app.use(bodyParser.urlencoded({ extended: true }));
@@ -33,6 +36,6 @@ module.exports = (app) => {
               });
             }
          }) 
-      })
+      });
    })
- }
+ };
