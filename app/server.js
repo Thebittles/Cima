@@ -9,6 +9,7 @@ const moment = require('moment')
 const LocalStrategy = require('passport-local');
 // uses mongoose as a library to store data in mongodb with local strategy
 const passportLocalMongoose = require('passport-local-mongoose');
+const {isLoggedIn, isLoggedOut} = require('./helpers/auth')
 
 const PORT = process.env.PORT || 3000
 const keys = require('./config/keys')
@@ -16,7 +17,6 @@ app.use(express.static('public'))
 
 // formating moments date 
 let now = moment().format('YYYY-MM-DD')
-
 
 //connecting mongoose
 mongoose.connect(keys.mongoURI,
@@ -35,7 +35,7 @@ const SymptomModel = require("./models/symptom");
 
 app.use(bodyParser.json()); // in_added support for json encoded bodies
 app.use(bodyParser.urlencoded({extended:true})); // support encoded bodies
-var urlencodedParser = bodyParser.urlencoded({extended: true}) // switched extended to true to match line 27
+const urlencodedParser = bodyParser.urlencoded({extended: true}) 
 
 //Here, we require passport and initialize it along with its session authentication middleware
 //load session middleware in the app object
@@ -57,49 +57,6 @@ passport.serializeUser(UserModel.serializeUser());
 // load functions to read from db into passport function -- whenever user uses a protected route
 passport.deserializeUser(UserModel.deserializeUser());
 
-
-////////////////////////////////////////////////////////////// Route Handlers
-/* NavBar & Landing */
-
-app.get('/', (req, res)=>{
-    res.render('home.ejs')
-})
-
-app.get('/contact', (req, res)=>{
-    res.render('contact.ejs')
-})
-
-/* MIDDLEWARE */
-
-//middleware to prevent users from manually going to /newsfeed
-isLoggedIn = (req, res, next) =>{
-    if(req.isAuthenticated()){ //isAuthenticated is built into passport method and checks to see if user is logged in
-        return next(); //move to the next piece of code
-    }
-    res.redirect('/login')
-}
-
-isLoggedOut =(req, res, next) =>{
-    if(!req.isAuthenticated()){
-        return next()
-    }
-    res.redirect('/dashboard')
-}
-
-/* END MIDDLEWARES */
-
-
-/* Logging in Routes */
-
-
-// login authentication and redirection
-app.post('/login', passport.authenticate('local', //passport.authenticate is middleware function
-{
-    successRedirect: '/dashboard',
-    failureRedirect: '/login'
-}), (req,res)=>{
-    //nothing is needed inside callback function bc middleware has handled route handling
-});
 
 app.get('/dashboard', isLoggedIn, (req, res) =>{
     let thirtyDays = moment().subtract(30, 'd').format('YYYY-MM-DD')
@@ -134,80 +91,6 @@ app.get('/dashboard', isLoggedIn, (req, res) =>{
 });
 
 
-
-/* Register Routes */
-app.get('/register', isLoggedOut, (req, res)=>{
-    res.render('register.ejs')
-})
-
-
-
-app.post('/register', (req, res)=>{
-    if(!req.body) return res.sendStatus(400)
-    const data = JSON.parse(JSON.stringify(req.body));
-     
-    var newUser = new UserModel(
-        {username: req.body.email,
-         firstName: req.body.firstname,
-         lastName: req.body.lastname,
-         DOB: moment(req.body.DOB).format('YYYY-MM-DD'),
-         created: now
-    });
-
-    UserModel.register(newUser, req.body.password, function(err, user){
-        if(err){
-            console.log(err);
-            return res.redirect('/register')
-        } else {
-            // replaced passport.auth with UserModel.auth
-            UserModel.authenticate("local")(req, res, function(){
-                // redirect was going to login anyway to changed
-                res.redirect("/login");
-            });
-        }
-    }) 
-});
-/* End Register */
-
-
-/* Add Doctor Routes */
-
-app.get('/doctor', isLoggedIn, (req, res)=>{
-    res.render('doctor.ejs')
-})
-
-
-app.post('/doctor', isLoggedIn, urlencodedParser, (req,res)=> {
-    if(!req.body) return res.sendStatus(400)
-    const data = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
-    //console.log(data)
-
-    let newDoctor = new DoctorModel({
-         //postedBy: username._id,
-         postedBy: req.user,
-         created: now,
-         name: req.body.doctor,
-         startV: moment(req.body.startV).format('YYYY-MM-DD'),
-         endV: moment(req.body.endV).format('YYYY-MM-DD'),
-         phone: req.body.phone,
-         address: req.body.address,
-         city: req.body.city,
-         state: req.body.state,
-         zip: req.body.zip,
-
-    });
-     
-    newDoctor.save(function(error, result){
-        if(error){
-            console.log('Error: ', error)
-            mongoose.disconnect()
-        } else {
-            console.log('Saved new Doctor: ', result)
-            res.redirect('/dashboard')
-        }
-    });
-});
-/* End Doctor Routes */
 
 
 
@@ -362,6 +245,10 @@ app.get('/dashboard/alltime', isLoggedIn, urlencodedParser, (req, res)=> {
 
 
 require("./routes/Auth")(app);
+require("./routes/Doctor")(app);
+require("./routes/Treatments")(app);
+require("./routes/Symptoms")(app);
+
 
 
 
