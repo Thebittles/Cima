@@ -1,6 +1,6 @@
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-const moment = requie('moment')
+const moment = require('moment')
 
 const {isLoggedIn} = require('../../helpers/auth')
 

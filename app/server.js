@@ -246,8 +246,8 @@ app.get('/dashboard/alltime', isLoggedIn, urlencodedParser, (req, res)=> {
 
 require("./routes/Auth")(app);
 require("./routes/Doctor")(app);
-require("./routes/Treatments")(app);
-require("./routes/Symptoms")(app);
+//require("./routes/Treatments")(app);
+//require("./routes/Symptoms")(app);
 
 
 

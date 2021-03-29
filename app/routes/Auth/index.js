@@ -3,8 +3,7 @@ const mongoose = require('mongoose')
 const passport = require('passport')
 const bodyParser = require('body-parser')
 
-const {isLoggedIn} = require('../../helpers/auth')
-
+const {isLoggedIn, isLoggedOut} = require('../../helpers/auth')
 
 
 
@@ -14,8 +13,8 @@ module.exports = (app) => {
 
     /* NavBar & Landing */
     app.get('/', (req, res)=>{
-        res.render('home.ejs')
-
+        res.render('home.ejs') })
+        
 
    
     //login
