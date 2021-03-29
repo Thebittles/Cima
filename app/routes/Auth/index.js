@@ -14,6 +14,8 @@ const bodyParser = require("body-parser");
 module.exports = (app) => {
     app.use(bodyParser.urlencoded({ extended: true }));
 
+
+    
     //login
     app.get('/login', isLoggedOut, (req, res)=>{
         res.render('login.ejs')
