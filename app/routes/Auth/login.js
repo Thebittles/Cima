@@ -1,11 +1,16 @@
 const passport = require('passport');
+const LocalStrategy = require('passport-local');
 const {isLoggedOut} = require('../../helpers/auth')
 
 module.exports = (app) => {
 
   //login
   app.get('/login', isLoggedOut, (req, res)=>{
-    res.render('login.ejs')
+    if(!error) {
+    res.render('login.ejs') }
+    else {
+      console.log(error)
+    }
  })
 
   // login authentication and redirection

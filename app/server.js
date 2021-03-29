@@ -244,6 +244,9 @@ app.get('/dashboard/alltime', isLoggedIn, urlencodedParser, (req, res)=> {
 /* End Query Routes */
 
 
+require("./routes/Auth/index")(app);
+require("./routes/Auth/login")(app);
+require("./routes/Auth/register")(app);
 require("./routes/Auth")(app);
 require("./routes/Doctor")(app);
 //require("./routes/Treatments")(app);
