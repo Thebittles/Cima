@@ -1,28 +1,30 @@
-
 const keys = require("../../config/keys");
 const mongoose = require('mongoose')
 const passport = require('passport')
+const bodyParser = require('body-parser')
 
+const {isLoggedIn} = require('../../helpers/auth')
 
-const User = require("../../models/user");
-
-
-const bodyParser = require("body-parser");
 
 
 
 module.exports = (app) => {
     app.use(bodyParser.urlencoded({ extended: true }));
 
-    //login
-    app.get('/login', isLoggedOut, (req, res)=>{
-        res.render('login.ejs')
+    /* NavBar & Landing */
+    app.get('/', (req, res)=>{
+        res.render('home.ejs')
     })
 
+    app.get('/contact', (req, res)=>{
+        res.render('contact.ejs')
+    })
+    
 
-    //logout route
-app.get('/logout', (req, res)=>{
-    req.logout(); //passport destroys all user data in session
-    res.redirect('/login'); //redirects back to login route
-});
+    app.get('/dashboard', isLoggedIn, (req, res) =>{
+        res.render('dashboard.ejs', {
+            user: req.user.firstName,
+            data: `I would be for the last 30 days from ${now}`
+        })
+    });
 }
