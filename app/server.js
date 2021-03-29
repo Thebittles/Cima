@@ -90,84 +90,6 @@ app.get('/dashboard', isLoggedIn, (req, res) =>{
     })
 });
 
-
-
-
-
-/* Add Symptom Routes */
-app.get('/symptom', isLoggedIn, (req, res)=>{
-    res.render('symptom.ejs')
-})
-
-
-app.post('/symptom', isLoggedIn, urlencodedParser, (req,res)=> {
-
-    if(!req.body) return res.sendStatus(400)
-    const data = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
-    console.log(data)
-    
-    let newSymptom = new SymptomModel({
-        postedBy: req.user,
-        created: now,
-        symptomDate: moment(req.body.symptomDate).format('YYYY-MM-DD'),
-        painlevel: req.body["Pain Level"],
-        bodyLocations: req.body["Body Locations"],
-        typePain: req.body.typePain
-   });
-    
-   newSymptom.save(function(error, result){
-       if(error){
-           console.log('Error: ', error)
-           mongoose.disconnect()
-       } else {
-           console.log('Saved new Symptom: ', result)
-           res.redirect('/dashboard')
-           //res.status(201).json(result);
-       }
-   });
-})
-
-/* End Symptom Routes */
-
-
-
-/* Add Treatment Routes */
-app.get('/treatment', isLoggedIn, (req, res)=>{
-res.render('treatment.ejs')
-})
-
-app.post('/treatment', isLoggedIn, urlencodedParser, (req,res)=> {
-    if(!req.body) return res.sendStatus(400)
-    const data = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
-    console.log(data)
-
-    
-    let newTreatment = new TreatmentModel({
-        postedBy: req.user,
-        created: now,
-        treatment: req.body.treatment,
-        start: moment(req.body.start).format('YYYY-MM-DD'),
-        end: moment(req.body.end).format('YYYY-MM-DD'),
-        effective: req.body.effective,
-        review: req.body.review
-   });
-    
-   newTreatment.save(function(error, result){
-       if(error){
-           console.log('Error: ', error)
-           mongoose.disconnect()
-       } else {
-           console.log('Saved new Treatment: ', result)
-           res.redirect('/dashboard')
-           //res.status(201).json(result);
-       }
-   });
-})
-/* End Treatment Routes */
-
-
-
-
 /* Query Routes */
 app.get('/dashboard/week', isLoggedIn, urlencodedParser, (req, res)=> {
     let week = moment().subtract(7, 'd').format('YYYY-MM-DD')
@@ -232,28 +154,20 @@ app.get('/dashboard/alltime', isLoggedIn, urlencodedParser, (req, res)=> {
         }
     })
 
-    
-    
-
     res.render('dashboard.ejs',{
         user: req.user.firstName,
         data: "I would be all time"
     })
 })
-
 /* End Query Routes */
-
 
 require("./routes/Auth/index")(app);
 require("./routes/Auth/login")(app);
 require("./routes/Auth/register")(app);
 require("./routes/Auth")(app);
 require("./routes/Doctor")(app);
-//require("./routes/Treatments")(app);
-//require("./routes/Symptoms")(app);
-
-
-
+require("./routes/Treatments")(app);
+require("./routes/Symptoms")(app);
 
 //Listener
 app.listen(PORT, ()=> console.log(`App listening on ${PORT}`))
