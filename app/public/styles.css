@@ -29,7 +29,8 @@ color:rgb(0, 0, 0)
 
 }
 
-.box-container {
+.history-box-container {
+    height: 300px;
     overflow: auto;
 }
 
@@ -80,19 +81,21 @@ color:rgb(0, 0, 0)
   
 
 
-.box-container {
+.add-box-container {
     background-color: white;
     border: solid rgba(0,0,0,0.3);
     padding: 5px;
     box-shadow: black 2px 2px 10px;
     
 }
-.box-container h4{
+.history-box {
+    height: 100px;
     font-weight: bold;
-    padding: 10px;
+    padding: 35px;
     background-color: gray;
     color: white;
     text-shadow: black 2px 2px 8px;
+    box-shadow: black 2px 2px 10px;
     
 }
 

@@ -10,7 +10,7 @@
         <h2 class="text-center">Welcome Back <span class="username"><%= user%>!</span></h2>
         <div class="row">
             <div class="col-4">
-            <div class="box-container">
+            <div class="add-box-container">
                 <h4 class="text-center">ADD</h4>
     
                 <form action="/symptom" method="GET">
@@ -60,7 +60,7 @@
         <div class="row text-center mt-2">
             <div class="col-8">
                 <div class="graph-div">
-                    <p>Graphs would go here <%=symptom%></p>
+                    <p>Graphs would go here </p>
                     <canvas></canvas>
                 </div>
 
@@ -77,7 +77,7 @@
         <div class="row text-center mt-2">
             <div class="col-8">
                 <div class="graph-div">
-                    <p>Second Graph would go here <%=doctor%></p>
+                    <p>Second Graph would go here </p>
                 </div>
             </div>
         </div>
@@ -113,19 +113,24 @@
 
             <div class="row mt-3">
             <div class="col-4">
-                <div class="symptom-container box-container">
-                    <h4 class="text-center">Symptoms</h4>
-                    <ul>
-                        <li><div>You could put it here <span><i class="fas fa-trash-alt"></i></span></div></li>
-                        <li><div>You could put it here <span><i class="fas fa-trash-alt"></i></span></div></li>
-                        <li><div>You could put it here <span><i class="fas fa-trash-alt"></i></span></div></li>
-                        <li><div>You could put it here <span><i class="fas fa-trash-alt"></i></span></div></li>
-                    </ul>
+                <h4 class="text-center history-box">Symptoms</h4>
+                <div class="symptom-container history-box-container">
+
+                        <% symptom.forEach(function(el){ %>
+                            <ul>
+                            <li><div class="hello"> Date Created: <strong> <%=el.created%></strong>  <br>
+                                    Started Date: <strong><%=el.symptomDate%></strong> <br>
+                                    Pain Level: <strong><%=el.painlevel%></strong> <br>
+                                    <span><i class="fas fa-trash-alt"></i></span> 
+                            </div></li>
+                            </ul>
+                            <% }) %>
+
                 </div>
             </div>                
             <div class="col-4">
-                <div class="treatment-container box-container">
-                    <h4 class="text-center">Treatments</h4>
+                <h4 class="text-center history-box">Treatments</h4>
+                <div class="treatment-container history-box-container">
                     <% treatment.forEach(function(el){ %>
                         <ul>
                         <li><div class="hello"> Date Created: <strong> <%=el.created%></strong>  <br>
@@ -140,13 +145,18 @@
             </div>
 
             <div class="col-4">
-                <div class="doctor-container box-container">
-                    <h4 class="text-center">Doctors</h4>
+                <h4 class="text-center history-box">Doctors</h4>
+                <div class="doctor-container history-box-container">
+                    <% doctor.forEach(function(el){ %>
                         <ul>
-                            <li><div>You could put it here <span><i class="fas fa-trash-alt"></i></span></div></li>
-                            <li><div>You could put it here <span><i class="fas fa-trash-alt"></i></span></div></li>
-                            <li><div>You could put it here <span><i class="fas fa-trash-alt"></i></span></div></li>
+                        <li><div class="hello"> Date Created: <strong> <%=el.created%></strong>  <br>
+                                Name: <strong> <%=el.name%> </strong>  <br>
+                                Started Visit: <strong><%=el.startV%></strong> <br>
+                                City: <strong><%=el.city%></strong> <br>
+                                <span><i class="fas fa-trash-alt"></i></span> 
+                        </div></li>
                         </ul>
+                   <% }) %>
                 </div>
             </div>
 

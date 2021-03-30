@@ -77,24 +77,6 @@ app.get('/dashboard', isLoggedIn, async (req, res) =>{
         })//closes route //req res function
 
 
-
-
-
-    // TreatmentModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} }, function(error, results){
-    //     if(error){
-    //         console.log('Error: ', error)
-    //     } else {
-    //         console.log('Found all Treatments from past 30da:'/* , results */)
-    //     }
-    // })
-
-    
-   
-
-
-
-
-
 /* Add Symptom Routes */
 app.get('/symptom', isLoggedIn, (req, res)=>{
     res.render('symptom.ejs')
@@ -170,76 +152,38 @@ app.post('/treatment', isLoggedIn, urlencodedParser, (req,res)=> {
 
 
 /* Query Routes */
-app.get('/dashboard/week', isLoggedIn, urlencodedParser, (req, res)=> {
+app.get('/dashboard/week', isLoggedIn, urlencodedParser, async (req, res)=> {
     let week = moment().subtract(7, 'd').format('YYYY-MM-DD')
-    console.log(week)
-    SymptomModel.find({postedBy : req.user._id, created: {$gte: `${week}`} }, function(error, results){
-        if(error){
-            console.log('Error: ', error)
-        } else {
-            console.log('Found all symptoms from past week: ', results)
-        }
-    })
-    
-
-    TreatmentModel.find({postedBy : req.user._id, created: {$gte: `${week}`} }, function(error, results){
-        if(error){
-            console.log('Error: ', error)
-        } else {
-            console.log('Found all Treatments from past week: ', results)
-        }
-    })
-
-    DoctorModel.find({postedBy : req.user._id, created: {$gte: `${week}`} }, function(error, results){
-        if(error){
-            console.log('Error: ', error)
-        } else {
-            console.log('Found all Doctors from past week: ', results)
-        }
-    })
-
-    res.render('dashboard.ejs',{
-        user: req.user.firstName,
-        data: `I would be for the past week from: ${now}`,
-    })
+    const doctorData = await DoctorModel.find({postedBy : req.user._id, created: {$gte: `${week}`} }) 
+    const treatmentData = await TreatmentModel.find({postedBy : req.user._id, created: {$gte: `${week}`} }) 
+    //const symptomData = await      SymptomModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} })
+    SymptomModel.find({postedBy : req.user._id, created: {$gte: `${week}`} })
+        .then(symptomData => {
+            res.render('dashboard.ejs', {
+                doctor: doctorData,
+                symptom: symptomData,
+                treatment: treatmentData,
+                user: req.user.firstName
+            });
+        })
 })
 
 
-app.get('/dashboard/', isLoggedIn, urlencodedParser, (req, res)=> {
+app.get('/dashboard/allTime', isLoggedIn, urlencodedParser, async (req, res)=> {
     let allTime = req.user.created
 
-
-    SymptomModel.find({postedBy : req.user._id, created: {$gte: `${allTime}`} }, function(error, results){
-        if(error){
-            console.log('Error: ', error)
-        } else {
-            console.log('Found all symptoms from since account was created: '/* , results */)
-        }
-    })
-
-    TreatmentModel.find({postedBy : req.user._id, created: {$gte: `${allTime}`} }, function(error, results){
-        if(error){
-            console.log('Error: ', error)
-        } else {
-            console.log('Found all Treatments from since account was created: '/* , results */)
-        }
-    })
-
-    DoctorModel.find({postedBy : req.user._id, created: {$gte: `${allTime}`} }, function(error, results){
-        if(error){
-            console.log('Error: ', error)
-        } else {
-            console.log('Found all Doctors from since account was created: '/* , results */)
-        }
-    })
-
-    
-    
-
-    res.render('dashboard.ejs',{
-        user: req.user.firstName,
-        data: "I would be all time"
-    })
+    const doctorData = await DoctorModel.find({postedBy : req.user._id, created: {$gte: `${allTime}`} }) 
+    const treatmentData = await TreatmentModel.find({postedBy : req.user._id, created: {$gte: `${allTime}`} }) 
+    //const symptomData = await      SymptomModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} })
+    SymptomModel.find({postedBy : req.user._id, created: {$gte: `${allTime}`} })
+        .then(symptomData => {
+            res.render('dashboard.ejs', {
+                doctor: doctorData,
+                symptom: symptomData,
+                treatment: treatmentData,
+                user: req.user.firstName
+            });
+        })
 })
 
 /* End Query Routes */
