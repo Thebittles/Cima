@@ -72,10 +72,14 @@ color:rgb(0, 0, 0)
 }
 
 .username:hover {
-    text-shadow: 0 0 28px #524A5C;
+    text-shadow: 5px 5px 10px #524A5C;
+    filter: invert(100%);
     transition-delay: .5s;
 }
   
+.the-invert:hover {
+    filter: invert(100%);
+}
 
 
 

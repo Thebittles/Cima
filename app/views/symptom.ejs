@@ -1,154 +1,135 @@
 <%- include('partials/header.ejs')%>
 <%- include('partials/navbar-loggedin.ejs')%>
 
-    
 
-<div class="wrapper symptom-wrapper" id="symptomForm">
-    <div class="symptom-form mx-4">
-        <form class="form-horizontal" action="/symptom" method="POST">
-            <legend>Symptom</legend>
+<div class="container my-3 dark-section justify-content-center" id="contact">
 
-            <div class="form-group row">
-            <!-- Date -->
-            <label for="start" class="col-form-label ml-4">Date:</label>
-            <div class="col-2">
-              <input class="form-control" type="date" name="start"  id="start">
-            </div>
-            
- <!-- Select Multiple -->
+  <span onclick="location.href='/dashboard'">   <i class="fas fa-chevron-circle-left fa-2x my-2"></i></span>
+    <form class="form-horizontal" action="/symptom" method="POST">
+    <legend>Symptom</legend>
 
-    <label class="col-1 control-label" for="Pain Level">Pain Level</label>
-    <div class="col-3">
-      <select id="Pain Level" name="Pain Level" class="form-control" multiple="multiple">
-        <option value="0">0 - No Pain</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5 - Moderate</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10" data-subtext="Unbearable">10</option>
-      </select>
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <label for="start" class="col-form-label">Date:</label>
+        <input class="form-control" type="date" name="start"  id="start">
+      </div>
+      <div class="col-4">
+          <label class="col-form-label" for="Pain Level">Pain Level</label>
+          <!-- Select Multiple -->
+          <select id="Pain Level" name="Pain Level" class="form-select form-control">
+            <option value="0">0 - No Pain</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 - Moderate</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10" data-subtext="Unbearable">10</option>
+          </select>
+      </div>
     </div>
-
-
-            </div>
-
-
-
-
-
-
 
 
 
  <!-- Multi Checkbox Body locaitons -->
- <div class="form-group">
-    <div class="col-6">
-      <label class="checkbox-inline mr-2" for="Body Locations-0">
-        <input type="checkbox" name="Body Locations" id="Body Locations-0" value="r-ovary">
-        R- Ovary
-      </label>
-      <label class="checkbox-inline mr-2" for="Body Locations-1">
-        <input type="checkbox" name="Body Locations" id="Body Locations-1" value="l-ovary">
-        L- Ovary
-      </label>
-      <label class="checkbox-inline mr-2" for="Body Locations-2">
-        <input type="checkbox" name="Body Locations" id="Body Locations-2" value="uterus">
-        Uterus
-      </label>
-      <label class="checkbox-inline mr-2" for="Body Locations-3">
-        <input type="checkbox" name="Body Locations" id="Body Locations-3" value="low-back">
-        Lower Back
-      </label>
-      <label class="checkbox-inline mr-2" for="Body Locations-4">
-        <input type="checkbox" name="Body Locations" id="Body Locations-4" value="up-ab">
-        Upper Abdomen
-      </label>
-      <label class="checkbox-inline mr-2" for="Body Locations-5">
-        <input type="checkbox" name="Body Locations" id="Body Locations-5" value="low-ab">
-        Lower Abdomen
-      </label>
-      <label class="checkbox-inline mr-2" for="Body Locations-6">
-        <input type="checkbox" name="Body Locations" id="Body Locations-6" value="l-leg">
-        L-Leg
-      </label>
-      <label class="checkbox-inline mr-2" for="Body Locations-7">
-        <input type="checkbox" name="Body Locations" id="Body Locations-7" value="r-leg">
-        R-Leg
-      </label>
-      <label class="checkbox-inline mr-2" for="Body Locations-8">
-        <input type="checkbox" name="Body Locations" id="Body Locations-8" value="head">
-        Head
-      </label>
-      <label class="checkbox-inline mr-2" for="Body Locations-9">
-        <input type="checkbox" name="Body Locations" id="Body Locations-9" value="l-breast">
-        L-Breast
-      </label>
-      <label class="checkbox-inline mr-2" for="Body Locations-10">
-        <input type="checkbox" name="Body Locations" id="Body Locations-10" value="r-breast">
-        R-Breast
-      </label>
-    </div>
-  </div>
+      <hr>
+      <u><h4 class="text-center my-4">Body Locations</h4></u>
+      <div class="row justify-content-center my-3">
+          <label class="checkbox-inline mx-2" for="Body Locations-0">
+            <input type="checkbox" class="form-control" name="Body Locations" id="Body Locations-0" value="r-ovary">
+            R- Ovary
+          </label>
+          <label class="checkbox-inline mx-2" for="Body Locations-1">
+            <input type="checkbox"  class="form-control"  name="Body Locations" id="Body Locations-1" value="l-ovary">
+            L- Ovary
+          </label>
+          <label class="checkbox-inline mx-2" for="Body Locations-2">
+            <input type="checkbox"  class="form-control"  name="Body Locations" id="Body Locations-2" value="uterus">
+            Uterus
+          </label>
+          <label class="checkbox-inline mx-2" for="Body Locations-3">
+            <input type="checkbox"  class="form-control"  name="Body Locations" id="Body Locations-3" value="low-back">
+            Lower Back
+          </label>
+          <label class="checkbox-inline mx-2" for="Body Locations-4">
+            <input type="checkbox"  class="form-control"  name="Body Locations" id="Body Locations-4" value="up-ab">
+            Upper Abdomen
+          </label>
+          <label class="checkbox-inline mx-2" for="Body Locations-5">
+            <input type="checkbox"  class="form-control"  name="Body Locations" id="Body Locations-5" value="low-ab">
+            Lower Abdomen
+          </label>
+          <label class="checkbox-inline mx-2" for="Body Locations-6">
+            <input type="checkbox"  class="form-control"  name="Body Locations" id="Body Locations-6" value="l-leg">
+            L-Leg
+          </label>
+          <label class="checkbox-inline mx-2" for="Body Locations-7">
+            <input type="checkbox"  class="form-control"  name="Body Locations" id="Body Locations-7" value="r-leg">
+            R-Leg
+          </label>
+          <label class="checkbox-inline mx-2" for="Body Locations-8">
+            <input type="checkbox"  class="form-control"  name="Body Locations" id="Body Locations-8" value="head">
+            Head
+          </label>
+          <label class="checkbox-inline mx-2" for="Body Locations-9">
+            <input type="checkbox"  class="form-control"  name="Body Locations" id="Body Locations-9" value="l-breast">
+            L-Breast
+          </label>
+          <label class="checkbox-inline mx-2" for="Body Locations-10">
+            <input type="checkbox"  class="form-control"  name="Body Locations" id="Body Locations-10" value="r-breast">
+            R-Breast
+          </label>
+      </div>
+
 <!-- end body locations -->
-
-
-<!-- Types of pain -->
-<div class="form-group row">
-  <div class="col-6">
-    <label class="checkbox-inline mr-2" for="typePain-0">
-      <input type="checkbox" name="typePain" id="typePain-0" value="burning">
-      Burning
-    </label>
-    <label class="checkbox-inline mr-2" for="typePain-1">
-      <input type="checkbox" name="typePain" id="typePain-1" value="stabbing">
-      Stabbing
-    </label>
-    <label class="checkbox-inline mr-2" for="typePain-2">
-      <input type="checkbox" name="typePain" id="typePain-2" value="shooting">
-      Shooting
-    </label>
-    <label class="checkbox-inline mr-2" for="typePain-3">
-      <input type="checkbox" name="typePain" id="typePain-3" value="aching">
-      Aching
-    </label>
-    <label class="checkbox-inline mr-2" for="typePain-4">
-      <input type="checkbox" name="typePain" id="typePain-4" value="fatigue">
-      Fatigue
-    </label>
-    <label class="checkbox-inline mr-2" for="typePain-5">
-      <input type="checkbox" name="typePain" id="typePain-5" value="twisting">
-      Twisting
-    </label>
-    <label class="checkbox-inline mr-2" for="typePain-6">
-      <input type="checkbox" name="typePain" id="typePain-5" value="radiating">
-      Radiating
-    </label>
+<br>
+<hr>
+<u><h4 class="text-center my-4">Type of Pain</h4></u>
+<div class="row justify-content-center my-3 ">
+<label class="checkbox-inline  mx-2" for="typePain-0">
+    <input type="checkbox"  class="form-control"   name="typePain" id="typePain-0" value="burning">
+    Burning
+  </label>
+  <label class="checkbox-inline  mx-2" for="typePain-1">
+    <input type="checkbox"  class="form-control"   name="typePain" id="typePain-1" value="stabbing">
+    Stabbing
+  </label>
+  <label class="checkbox-inline  mx-2" for="typePain-2">
+    <input type="checkbox"  class="form-control"   name="typePain" id="typePain-2" value="shooting">
+    Shooting
+  </label>
+  <label class="checkbox-inline  mx-2" for="typePain-3">
+    <input type="checkbox"  class="form-control"   name="typePain" id="typePain-3" value="aching">
+    Aching
+  </label>
+  <label class="checkbox-inline  mx-2" for="typePain-4">
+    <input type="checkbox"  class="form-control"   name="typePain" id="typePain-4" value="fatigue">
+    Fatigue
+  </label>
+  <label class="checkbox-inline  mx-2" for="typePain-5">
+    <input type="checkbox"  class="form-control"   name="typePain" id="typePain-5" value="twisting">
+    Twisting
+  </label>
+  <label class="checkbox-inline  mx-2" for="typePain-6">
+    <input type="checkbox"  class="form-control"   name="typePain" id="typePain-5" value="radiating">
+    Radiating
+  </label>
   </div>
+  <div class="row justify-content-center">
+    <div class="col-6">
+        <button id="Submit" name="Submit" class="btn btn-block btn-custom my-4">Add Symptom</button>
+    </div>
+   
 </div>
 
 
-
-  
-  <!-- Button -->
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="Symptom"></label>
-    <div class="col-md-4">
-      <button id="Symptom" name="Symptom" class="btn btn-inverse">Add Symptom</button>
-    </div>
-  </div>
+</form> 
 
 
 
-        </form> 
-    </div>
-</div> <!-- close wrapper -->
-
-
-
+</div> <!-- close container #contact -->
 
 <%- include('partials/footer.ejs') %>
