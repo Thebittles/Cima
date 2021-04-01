@@ -58,6 +58,7 @@ passport.serializeUser(UserModel.serializeUser());
 passport.deserializeUser(UserModel.deserializeUser());
 
 
+/* Query Routes */
 app.get('/dashboard', isLoggedIn, async (req, res) =>{
     let thirtyDays = moment().subtract(30, 'd').format('YYYY-MM-DD')
     const doctorData = await DoctorModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} }) 
@@ -75,10 +76,8 @@ app.get('/dashboard', isLoggedIn, async (req, res) =>{
 
 
         })//closes route //req res function
-});
 
-/* Query Routes */
-app.get('/dashboard/week', isLoggedIn, urlencodedParser, async (req, res)=> {
+app.get('/week', isLoggedIn, urlencodedParser, async (req, res)=> {
     let week = moment().subtract(7, 'd').format('YYYY-MM-DD')
     const doctorData = await DoctorModel.find({postedBy : req.user._id, created: {$gte: `${week}`} }) 
     const treatmentData = await TreatmentModel.find({postedBy : req.user._id, created: {$gte: `${week}`} }) 
@@ -95,7 +94,7 @@ app.get('/dashboard/week', isLoggedIn, urlencodedParser, async (req, res)=> {
 })
 
 
-app.get('/dashboard/allTime', isLoggedIn, urlencodedParser, async (req, res)=> {
+app.get('/allTime', isLoggedIn, urlencodedParser, async (req, res)=> {
     let allTime = req.user.created
 
 
@@ -113,6 +112,17 @@ app.get('/dashboard/allTime', isLoggedIn, urlencodedParser, async (req, res)=> {
         })
 
 })
+
+/* End query routes */
+
+
+
+app.get('/test', isLoggedIn, urlencodedParser, (req, res)=> {
+    res.render('test.ejs')
+})
+
+
+
 
 
 require("./routes/Auth/index")(app);

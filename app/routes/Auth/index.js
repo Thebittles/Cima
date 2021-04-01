@@ -12,7 +12,7 @@ module.exports = (app) => {
 
 
     /* NavBar & Landing */
-    app.get('/', (req, res)=>{
+    app.get('/', isLoggedOut, (req, res)=>{
         res.render('home.ejs') })
         
 

@@ -9,7 +9,7 @@ const urlencodedParser = bodyParser.urlencoded({extended: true});
 
 module.exports = (app) => {
   app.get('/treatment', isLoggedIn, (req, res)=>{
-    res.render('treatment.ejs')
+    res.render('treat.ejs')
     });
 
     app.post('/treatment', isLoggedIn, urlencodedParser, (req,res)=> {
