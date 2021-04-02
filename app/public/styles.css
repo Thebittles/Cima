@@ -135,6 +135,8 @@ box-shadow: 0 5px 15px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 
 .btn:hover{
     background-color: #BAB4BB;
+    border: solid white 2px;
+    transition: all .2s ease-out;
 }
 
 .navbar-container {

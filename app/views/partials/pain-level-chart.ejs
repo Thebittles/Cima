@@ -1,0 +1,49 @@
+
+
+    <canvas id="painLevelChart"></canvas>
+
+
+
+    <!-- close for loop -->
+<script>
+    
+
+
+
+
+    let myChart = document.getElementById('painLevelChart').getContext('2d');
+    
+    let painLevelChart = new Chart(myChart, {
+        type: 'doughnut',
+        data: {
+            labels: ['Average Pain Level <%=average%>'],
+            datasets: [{
+                label: 'PainLevel',
+                data: ['<%=average%>', 10],
+                backgroundColor: [
+                'rgb(82,74,92)',
+                'rgb(130,129,136)'],
+                borderWidth: 3,
+                borderColor: '#777',
+                hoverBorderColor: '#eee'
+            }]
+         },
+         
+        options: {
+            title:{ 
+                display: true,    
+                text: 'Average Pain Level',
+                fontSize:25
+            },
+            scales: {
+                yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+        }
+    })
+
+
+</script>
