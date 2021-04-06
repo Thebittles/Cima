@@ -70,7 +70,7 @@ app.get('/dashboard', isLoggedIn, async (req, res) =>{
             let totalLogs = symptomData.length
             let percentage = function(Logs, num){
                 let percent = ((Logs/num) * 100)
-                return percent
+                return percent.toFixed(2)
             }
             let percent = percentage(totalLogs, 30)
             console.log('I am the percent ', `${percent}%`)
@@ -79,6 +79,8 @@ app.get('/dashboard', isLoggedIn, async (req, res) =>{
             symptomData.forEach(el => {
                 painCount+= el.painlevel
             })
+            
+            let days = 30
             let avgPain = (painCount / totalLogs).toFixed(2)
             console.log('I am the pain Count :', painCount)
             console.log('I am the total Logs : ', totalLogs)
@@ -89,8 +91,10 @@ app.get('/dashboard', isLoggedIn, async (req, res) =>{
                 symptom: symptomData,
                 treatment: treatmentData,
                 user: req.user.firstName,
-                logs: percent,
-                average: avgPain
+                logs: totalLogs,
+                percent: percent,
+                average: avgPain,
+                days: days
             });
         })
 
@@ -103,10 +107,11 @@ app.get('/week', isLoggedIn, urlencodedParser, async (req, res)=> {
     //const symptomData = await      SymptomModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} })
     SymptomModel.find({postedBy : req.user._id, created: {$gte: `${week}`} })
         .then(symptomData => {
+                  
             let totalLogs = symptomData.length
             let percentage = function(Logs, num){
                 let percent = ((Logs/num) * 100)
-                return percent
+                return percent.toFixed(2)
             }
             let percent = percentage(totalLogs, 30)
             console.log('I am the percent ', `${percent}%`)
@@ -115,28 +120,36 @@ app.get('/week', isLoggedIn, urlencodedParser, async (req, res)=> {
             symptomData.forEach(el => {
                 painCount+= el.painlevel
             })
+            
+            let days = 7
             let avgPain = (painCount / totalLogs).toFixed(2)
             console.log('I am the pain Count :', painCount)
             console.log('I am the total Logs : ', totalLogs)
             console.log('I am the Average Pain level : ', avgPain)
-
-
+        
             res.render('dashboard.ejs', {
                 doctor: doctorData,
                 symptom: symptomData,
                 treatment: treatmentData,
-                user: req.user.firstName
+                user: req.user.firstName,
+                logs: totalLogs,
+                percent: percent,
+                average: avgPain,
+                days: days
             });
         })
 })
 
 
 app.get('/allTime', isLoggedIn, urlencodedParser, async (req, res)=> {
-    let allTime = req.user.created
-    var a = moment(allTime).format('YYYY-MM-DD')
+
+
+
+    var a = moment(req.user.created).format('YYYY-MM-DD')
     var b = moment().format('YYYY-MM-DD')
 
-    //var numOfDays = a.diff(b, 'days')
+   console.log(b.diff(a,'days')) 
+    
 
     const doctorData = await DoctorModel.find({postedBy : req.user._id, created: {$gte: `${allTime}`} }) 
     const treatmentData = await TreatmentModel.find({postedBy : req.user._id, created: {$gte: `${allTime}`} }) 
@@ -144,30 +157,34 @@ app.get('/allTime', isLoggedIn, urlencodedParser, async (req, res)=> {
     SymptomModel.find({postedBy : req.user._id, created: {$gte: `${allTime}`} })
         .then(symptomData => {
 
+               
             let totalLogs = symptomData.length
             let percentage = function(Logs, num){
                 let percent = ((Logs/num) * 100)
-                return percent
+                return percent.toFixed(2)
             }
-            let percent = percentage(totalLogs, )
+            let percent = percentage(totalLogs, 30)
             console.log('I am the percent ', `${percent}%`)
 
             let painCount = 0;
             symptomData.forEach(el => {
                 painCount+= el.painlevel
             })
+            
             let avgPain = (painCount / totalLogs).toFixed(2)
             console.log('I am the pain Count :', painCount)
             console.log('I am the total Logs : ', totalLogs)
             console.log('I am the Average Pain level : ', avgPain)
-
-
-
+        
             res.render('dashboard.ejs', {
                 doctor: doctorData,
                 symptom: symptomData,
                 treatment: treatmentData,
-                user: req.user.firstName
+                user: req.user.firstName,
+                logs: totalLogs,
+                percent: percent,
+                average: avgPain,
+                days: days
             });
         })
 

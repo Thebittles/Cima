@@ -7,6 +7,7 @@ color:rgb(0, 0, 0)
 }
 
 
+
 #contact, #login, #registerContainer, #symptomForm, #treatmentForm, #doctorForm {
     height: 100%;
     width: 90%;
@@ -82,6 +83,41 @@ color:rgb(0, 0, 0)
 }
 
 
+.btn {
+    background-color: #524A5C;
+    color: white;
+}
+
+.btn:hover{
+    background-color: #BAB4BB;
+    border: solid white 2px;
+    transition: all .2s ease-out;
+    color: white;
+}
+
+/* Pain Average */
+#pain-result {
+    background-color: rgba(150,150,150,0.2);
+    margin: 20px 10px;
+    text-transform: uppercase;
+    border:rgb(0, 0, 0, .5) solid 2px;
+    padding: 5px ;
+
+
+}
+
+strong.info {
+
+font-size: 1.2em;
+padding: 5px 15px;
+text-align: center;
+
+
+
+
+}
+/* End Average */
+
 
 .add-box-container {
 
@@ -133,11 +169,7 @@ box-shadow: 0 5px 15px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 /* End Dashboard */
 
 
-.btn:hover{
-    background-color: #BAB4BB;
-    border: solid white 2px;
-    transition: all .2s ease-out;
-}
+
 
 .navbar-container {
     background-color: #524A5C;
