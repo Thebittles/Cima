@@ -14,12 +14,12 @@
     let myChart = document.getElementById('painLevelChart').getContext('2d');
     
     let painLevelChart = new Chart(myChart, {
-        type: 'doughnut',
+        type: 'bar',
         data: {
-            labels: ['Average Pain Level <%=average%>'],
+            labels: ['Average Pain Level <%=average%>', 'Percentage of Logs <%=logs%>'],
             datasets: [{
-                label: 'PainLevel',
-                data: ['<%=average%>', 10],
+                label: ['PainLevel', 'Percentage of Logs'],
+                data: ['<%=average%>', '<%=logs%>'],
                 backgroundColor: [
                 'rgb(82,74,92)',
                 'rgb(130,129,136)'],
