@@ -6,6 +6,8 @@
 
 
 
+
+
 // let myChart = document.getElementById('myChart').getContext('2d');
 // //Global Options
 // Chart.defaults.global.defaultFontFamily = 'Lato';

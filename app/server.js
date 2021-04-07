@@ -93,6 +93,7 @@ app.get('/dashboard', isLoggedIn, async (req, res) =>{
             let avgPain = (painCount / totalLogs).toFixed(2)
             res.render('dashboard.ejs', {
                 doctor: doctorData30,
+
                 symptom: symptomData30,
                 treatment: treatmentData30,
                 user: req.user.firstName,
@@ -189,11 +190,14 @@ let year = moment().subtract(365, 'd').format('YYYY-MM-DD')
 
         console.log(count)
 
-    }
+    }       
     
     minus(arr1, arr2) */
     //let amount = arr1.diff(arr2,'days')
      //console.log(amount) 
+
+    
+    let days = '365'
 
     try {
         var doctorDataYear = await DoctorModel.find({postedBy : req.user._id, created: {$gte: `${year}`} }) 
