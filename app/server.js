@@ -63,7 +63,7 @@ app.get('/dashboard', isLoggedIn, async (req, res) =>{
     let thirtyDays = moment().subtract(30, 'd').format('YYYY-MM-DD')
 
     try {
-        var doctorData = await DoctorModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} }).exec()
+        var doctorData30 = await DoctorModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} }).exec()
     } catch(err){
         console.log(err)
     }
@@ -76,7 +76,7 @@ app.get('/dashboard', isLoggedIn, async (req, res) =>{
     //const symptomData = await      SymptomModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} })
     SymptomModel.find({postedBy : req.user._id, symptomDate: {$gte: `${thirtyDays}T00:00:00.000+00:00`} })
         .then(symptomData => {
-             //console.log(symptomData)
+             console.log(symptomData)
             let totalLogs = symptomData.length
             //this one can go
             let percentage = function(Logs, num){
@@ -92,7 +92,7 @@ app.get('/dashboard', isLoggedIn, async (req, res) =>{
             let days = 30
             let avgPain = (painCount / totalLogs).toFixed(2)
             res.render('dashboard.ejs', {
-                doctor: doctorData,
+                doctor: doctorData30,
                 symptom: symptomData,
                 treatment: treatmentData,
                 user: req.user.firstName,
@@ -175,13 +175,13 @@ let allTime = req.user.created
 
         console.log(count)
 
-    }
+    }       
     
     minus(arr1, arr2) */
     //let amount = arr1.diff(arr2,'days')
      //console.log(amount) 
     
-    let days = 'days'
+    let days = '365'
 
 
     const doctorData = await DoctorModel.find({postedBy : req.user._id, created: {$gte: `${allTime}`} }) 
