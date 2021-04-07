@@ -61,31 +61,36 @@ passport.deserializeUser(UserModel.deserializeUser());
 /* Query Routes */
 app.get('/dashboard', isLoggedIn, async (req, res) =>{
     let thirtyDays = moment().subtract(30, 'd').format('YYYY-MM-DD')
-    const doctorData = await DoctorModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} }) 
-    const treatmentData = await TreatmentModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} }) 
+
+    try {
+        var doctorData = await DoctorModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} }).exec()
+    } catch(err){
+        console.log(err)
+    }
+
+    try {
+        var treatmentData = await TreatmentModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} }).exec()
+    } catch(err){
+        console.log(err)
+    }
     //const symptomData = await      SymptomModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} })
-    SymptomModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} })
+    SymptomModel.find({postedBy : req.user._id, symptomDate: {$gte: `${thirtyDays}T00:00:00.000+00:00`} })
         .then(symptomData => {
-            
+             //console.log(symptomData)
             let totalLogs = symptomData.length
+            //this one can go
             let percentage = function(Logs, num){
                 let percent = ((Logs/num) * 100)
                 return percent.toFixed(2)
             }
             let percent = percentage(totalLogs, 30)
-            console.log('I am the percent ', `${percent}%`)
-
+            //console.log('I am the percent ', `${percent}%`)
             let painCount = 0;
             symptomData.forEach(el => {
                 painCount+= el.painlevel
             })
-            
             let days = 30
             let avgPain = (painCount / totalLogs).toFixed(2)
-            console.log('I am the pain Count :', painCount)
-            console.log('I am the total Logs : ', totalLogs)
-            console.log('I am the Average Pain level : ', avgPain)
-        
             res.render('dashboard.ejs', {
                 doctor: doctorData,
                 symptom: symptomData,
@@ -97,6 +102,9 @@ app.get('/dashboard', isLoggedIn, async (req, res) =>{
                 days: days
             });
         })
+        .catch(err => {
+            console.log(err)
+        })
 
         })//closes route //req res function
 
@@ -105,16 +113,16 @@ app.get('/week', isLoggedIn, urlencodedParser, async (req, res)=> {
     const doctorData = await DoctorModel.find({postedBy : req.user._id, created: {$gte: `${week}`} }) 
     const treatmentData = await TreatmentModel.find({postedBy : req.user._id, created: {$gte: `${week}`} }) 
     //const symptomData = await      SymptomModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} })
-    SymptomModel.find({postedBy : req.user._id, created: {$gte: `${week}`} })
+    SymptomModel.find({postedBy : req.user._id, symptomDate: {$gte: `${week}T00:00:00.000+00:00`} })
         .then(symptomData => {
-                  
+                  console.log('I am data for the week: ',symptomData)
             let totalLogs = symptomData.length
             let percentage = function(Logs, num){
                 let percent = ((Logs/num) * 100)
                 return percent.toFixed(2)
             }
             let percent = percentage(totalLogs, 30)
-            console.log('I am the percent ', `${percent}%`)
+            //console.log('I am the percent ', `${percent}%`)
 
             let painCount = 0;
             symptomData.forEach(el => {
@@ -123,9 +131,9 @@ app.get('/week', isLoggedIn, urlencodedParser, async (req, res)=> {
             
             let days = 7
             let avgPain = (painCount / totalLogs).toFixed(2)
-            console.log('I am the pain Count :', painCount)
-            console.log('I am the total Logs : ', totalLogs)
-            console.log('I am the Average Pain level : ', avgPain)
+            //console.log('I am the pain Count :', painCount)
+            //console.log('I am the total Logs : ', totalLogs)
+            //console.log('I am the Average Pain level : ', avgPain)
         
             res.render('dashboard.ejs', {
                 doctor: doctorData,
@@ -143,18 +151,43 @@ app.get('/week', isLoggedIn, urlencodedParser, async (req, res)=> {
 
 app.get('/allTime', isLoggedIn, urlencodedParser, async (req, res)=> {
 
+let allTime = req.user.created
+/* 
+    var a = moment(allTime).format('YYYY-MM-DD').split('-')
+    var b = moment().format('YYYY-MM-DD').split('-')
+    console.log(a, b)
+ 
+    let arr1 = a.map((el) => {
+         return parseInt(el)
+    })
 
+    let arr2 = b.map((el) => {
+        return parseInt(el)
+   })
 
-    var a = moment(req.user.created).format('YYYY-MM-DD')
-    var b = moment().format('YYYY-MM-DD')
+    function minus(arr1, arr2){
+        let count = [];
 
-   console.log(b.diff(a,'days')) 
+        for(i = 0; i < arr1.length; i++){
+            let num = arr1[i] - arr2[i]
+            count.push(num)
+        }
+
+        console.log(count)
+
+    }
     
+    minus(arr1, arr2) */
+    //let amount = arr1.diff(arr2,'days')
+     //console.log(amount) 
+    
+    let days = 'days'
+
 
     const doctorData = await DoctorModel.find({postedBy : req.user._id, created: {$gte: `${allTime}`} }) 
     const treatmentData = await TreatmentModel.find({postedBy : req.user._id, created: {$gte: `${allTime}`} }) 
     //const symptomData = await      SymptomModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} })
-    SymptomModel.find({postedBy : req.user._id, created: {$gte: `${allTime}`} })
+    SymptomModel.find({postedBy : req.user._id, symptomDate: {$gte: `${allTime}T00:00:00.000+00:00`} })
         .then(symptomData => {
 
                
@@ -172,9 +205,7 @@ app.get('/allTime', isLoggedIn, urlencodedParser, async (req, res)=> {
             })
             
             let avgPain = (painCount / totalLogs).toFixed(2)
-            console.log('I am the pain Count :', painCount)
-            console.log('I am the total Logs : ', totalLogs)
-            console.log('I am the Average Pain level : ', avgPain)
+
         
             res.render('dashboard.ejs', {
                 doctor: doctorData,
