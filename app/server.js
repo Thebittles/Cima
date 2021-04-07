@@ -167,37 +167,8 @@ app.get('/week', isLoggedIn, urlencodedParser, async (req, res)=> {
 app.get('/year', isLoggedIn, urlencodedParser, async (req, res)=> {
 
 let year = moment().subtract(365, 'd').format('YYYY-MM-DD')
-/* 
-    var a = moment(allTime).format('YYYY-MM-DD').split('-')
-    var b = moment().format('YYYY-MM-DD').split('-')
-    console.log(a, b)
- 
-    let arr1 = a.map((el) => {
-         return parseInt(el)
-    })
 
-    let arr2 = b.map((el) => {
-        return parseInt(el)
-   })
 
-    function minus(arr1, arr2){
-        let count = [];
-
-        for(i = 0; i < arr1.length; i++){
-            let num = arr1[i] - arr2[i]
-            count.push(num)
-        }
-
-        console.log(count)
-
-    }       
-    
-    minus(arr1, arr2) */
-    //let amount = arr1.diff(arr2,'days')
-     //console.log(amount) 
-
-    
-    let days = '365'
 
     try {
         var doctorDataYear = await DoctorModel.find({postedBy : req.user._id, created: {$gte: `${year}`} }) 
@@ -226,7 +197,7 @@ let year = moment().subtract(365, 'd').format('YYYY-MM-DD')
             symptomDataYear.forEach(el => {
                 painCount+= el.painlevel
             })
-            let days = 'days'
+            let days = 365
             let avgPain = (painCount / totalLogs).toFixed(2)
 
         
