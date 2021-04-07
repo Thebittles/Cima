@@ -15,6 +15,7 @@ module.exports = (app) => {
     if(!req.body) return res.sendStatus(400)
     const data = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
     console.log(data)
+    
 
     let newSymptom = new SymptomModel({
       postedBy: req.user,

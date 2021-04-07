@@ -26,8 +26,27 @@ color:rgb(0, 0, 0)
     padding: 5px 5px;
     text-align: center;
     align-items: center;
-    border: red solid 2px;
+    border: #524A5C solid 2px;
+    border-radius: 15%;
+    font-size: .75em;
 
+}
+
+
+ul {
+    list-style: none;
+}
+
+
+.fa-trash-alt {
+    font-size: 1.5em;
+    color:#524A5C;
+}
+
+.fa-trash-alt:hover {
+    font-size: 1.3em;
+    color: red;
+    cursor: pointer; 
 }
 
 .history-box-container {
@@ -36,6 +55,16 @@ color:rgb(0, 0, 0)
 }
 
 /* Homepage */
+
+
+.vertical-line {
+    margin: 20px;
+    height: 90%;
+    border-right: 4px solid#313131;
+    opacity: .6;
+
+
+}
 
 .dark-section {
     background: #313131;
@@ -60,6 +89,17 @@ color:rgb(0, 0, 0)
 .carousel-item img {
     width:100%;
     opacity: .5;
+}
+
+
+
+
+a {
+    color: white;
+}
+
+a:hover  {
+    color:#524A5C;
 }
 /* End Hompeage */
 
