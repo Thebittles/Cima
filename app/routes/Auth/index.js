@@ -19,7 +19,8 @@ module.exports = (app) => {
    
     //login
     app.get('/login', isLoggedOut, (req, res)=>{
-        res.render('login.ejs')
+        const errors = req.flash().error || [];
+        res.render('login.ejs', { errors });
 
     })
 

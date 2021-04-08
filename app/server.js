@@ -4,7 +4,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const moment = require('moment')
+const moment = require('moment');
+const flash = require('connect-flash');
 // strategy that sllows us to auth with username/password
 const LocalStrategy = require('passport-local');
 // uses mongoose as a library to store data in mongodb with local strategy
@@ -45,6 +46,7 @@ app.use(require('express-session')({
     resave: false, //save the session obj if not changed
     saveUninitialized: false //save the session obj even if not initialized
 }));
+app.use(flash());
 
 //generating functions from core passport library and loading to app object
 app.use(passport.initialize());
@@ -77,6 +79,7 @@ app.get('/dashboard', isLoggedIn, async (req, res) =>{
     SymptomModel.find({postedBy : req.user._id, symptomDate: {$gte: `${thirtyDays}T00:00:00.000+00:00`} })
         .then(symptomData30 => {
              //console.log(symptomData)
+             
             let totalLogs = symptomData30.length
             //this one can go
             let percentage = function(Logs, num){
@@ -93,7 +96,6 @@ app.get('/dashboard', isLoggedIn, async (req, res) =>{
             let avgPain = (painCount / totalLogs).toFixed(2)
             res.render('dashboard.ejs', {
                 doctor: doctorData30,
-
                 symptom: symptomData30,
                 treatment: treatmentData30,
                 user: req.user.firstName,
@@ -167,8 +169,6 @@ app.get('/week', isLoggedIn, urlencodedParser, async (req, res)=> {
 app.get('/year', isLoggedIn, urlencodedParser, async (req, res)=> {
 
 let year = moment().subtract(365, 'd').format('YYYY-MM-DD')
-
-
 
     try {
         var doctorDataYear = await DoctorModel.find({postedBy : req.user._id, created: {$gte: `${year}`} }) 
