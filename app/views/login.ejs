@@ -5,7 +5,11 @@
 <div class="container my-3 dark-section" id="login">
   <div class="col-md-6 m-auto">
     <h1 class="text-center mb-3">Login</h1>
-    <!--  -->
+    <!-- error message -->
+       <% for (let i=0; i<errors.length; i++){ %>
+          <p class="error"><%= errors[i] %></p>
+      <% } %>
+
     <form action="/login" method="POST">
       <div class="form-group">
         <label for="username">Email</label>

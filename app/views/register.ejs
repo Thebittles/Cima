@@ -8,6 +8,14 @@
     <h1 class="text-light text-center mb-3">Register</h1>
         <form action="/register" method="POST">
           <!-- messages ejs here -->
+          <%if(typeof err == "undefined"){%>
+     <% } else { %>
+             <p class="error">
+             <%= err%>
+            </p> 
+        <%}%>
+
+
             <div class="form-group">
               <label for="email">Email</label>
                 <input 

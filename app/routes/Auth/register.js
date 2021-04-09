@@ -27,7 +27,7 @@ module.exports = (app) => {
       User.register(newUser, req.body.password, function(err, user){
           if(err){
               console.log(err);
-              return res.redirect('/register')
+              return res.render('register.ejs', {err: err})
           } else {
               // replaced passport.auth with UserModel.auth
               User.authenticate("local")(req, res, function(){
