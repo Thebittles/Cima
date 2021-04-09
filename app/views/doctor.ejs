@@ -6,16 +6,16 @@
     <span onclick="location.href='/dashboard'">   <i class="fas fa-chevron-circle-left fa-2x my-2"></i></span>
     <form action="/doctor" method="POST">
         <legend>Doctor</legend>
-        <label for="doctor" class="form-label">Doctor Name</label>
-        <input class="form-control" type="text" name="doctor" id="doctor" placeholder="Dr. Devin">
+        <label for="doctor" class="form-label">Name</label>
+        <input class="form-control" type="text" name="doctor" id="doctor">
         <div class="row">
             <!-- Start & End Visit -->
             <div class="col-6">
-                <label for="startVisit" class="form-label">Started Visit:</label>
+                <label for="startVisit" class="form-label">First Visit</label>
                 <input class="form-control" type="date" name="startVisit"  id="startVisit">
             </div>
             <div class="col-6">
-                <label for="endVisit" class="form-label">End Visit:</label>
+                <label for="endVisit" class="form-label">Last Visit</label>
                 <input class="form-control" type="date" name="endVisit" id="endVisit">
             </div>
         </div>
@@ -28,13 +28,13 @@
             </div>
             <div class="col-6">
             <label for="email">Email</label>
-            <input type="text" class="form-control" name="email" id="email" placeholder="HealthInfo@email.com">   
+            <input type="text" class="form-control" name="email" id="email" placeholder="user@example.com">   
             </div>
         </div>
         <div class="row">
             <div class="col-4">
                 <label for="address">Address</label>
-                <input type="text" class="form-control" name="address" id="address" placeholder="1234 Main St">
+                <input type="text" class="form-control" name="address" id="address">
             </div>
             <div class="col-4">
                 <label for="city">City</label>
