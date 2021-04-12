@@ -127,8 +127,8 @@
                             <ul>
                             <li><div class="hello"> 
                                 <p>
-                                    Date Created: <strong> <%=el.created%></strong>
-                                    Started Date: <strong><%=el.symptomDate%></strong> 
+                                    Date Created: <strong> <%=el.created%></strong><br>
+                                    Date Started: <strong><%=el.symptomDate%></strong><br>
                                     Pain Level: <strong><%=el.painlevel%></strong> <br>
                                     <span><i class="fas fa-trash-alt"></i></span> 
                                 </p>
@@ -143,9 +143,9 @@
                 <div class="treatment-container history-box-container">
                     <% treatment.forEach(function(el){ %>
                         <ul>
-                        <li><div class="hello"> Date Created: <strong> <%=el.created%></strong>  
-                                Name: <strong> <%=el.treatment%> </strong>  
-                                Effective: <strong><%=el.effective%></strong> 
+                        <li><div class="hello"> Date Created: <strong> <%=el.created%></strong> <br>
+                                Name: <strong> <%=el.treatment%> </strong>  <br>
+                                Effectiveness: <strong><%=el.effective%></strong> <br>
                                 Review: <strong><%=el.review%></strong> 
                                 <br>
                                 <span><i class="fas fa-trash-alt"></i></span> 
@@ -160,9 +160,9 @@
                 <div class="doctor-container history-box-container">
                     <% doctor.forEach(function(el){ %>
                         <ul>
-                        <li><div class="hello"> Date Created: <strong> <%=el.created%></strong>  
-                                Name: <strong> <%=el.name%> </strong> 
-                                Started Visit: <strong><%=el.startV%></strong> 
+                        <li><div class="hello"> Date Created: <strong> <%=el.created%></strong><br>  
+                                Name: <strong> <%=el.name%> </strong> <br>
+                                First Visit: <strong><%=el.startV%></strong> <br>
                                 City: <strong><%=el.city%></strong> <br>
                                 <span><i class="fas fa-trash-alt"></i></span> 
                         </div></li>

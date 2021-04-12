@@ -30,9 +30,11 @@ color:rgb(0, 0, 0)
     text-align: center;
     align-items: center;
     border: #524A5C solid 2px;
-    border-radius: 15%;
+    border-radius: 10px;
     font-size: .75em;
-
+    color: white;
+    background-color: #524A5C;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.30), 0 5px 12px rgba(0,0,0,0.22);
 }
 
 
@@ -43,7 +45,7 @@ ul {
 
 .fa-trash-alt {
     font-size: 1.5em;
-    color:#524A5C;
+    color:white;
 }
 
 .fa-trash-alt:hover {
@@ -209,6 +211,8 @@ box-shadow: 0 5px 15px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
     padding: 100px 20px;
     border: black solid
 }
+
+
 /* End Dashboard */
 
 
