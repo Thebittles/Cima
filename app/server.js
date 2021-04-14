@@ -80,6 +80,48 @@ app.get('/dashboard', isLoggedIn, async (req, res) =>{
         .then(symptomData30 => {
              //console.log(symptomData)
              
+            /* Top bodyLocations Functions */
+            const freq = {};
+
+            for (let {bodyLocations} of symptomData30) {
+                for (let location of bodyLocations) freq[location] = (freq[location] || 0) + 1;
+
+            }
+
+            const maxFreq = Math.max(...Object.values(freq));
+            const location = Object.keys(freq).find(location => freq[location] === maxFreq);
+            // This gives you the top location
+            console.log('I am the top location: ', location)
+            console.log(freq)
+
+            function findTop3(obj){
+                return Object.keys(obj).sort((a,b) => {return obj[b]-obj[a]}).slice(0,3);
+              }
+              
+              console.log('I am the top three Locations:', findTop3(freq));
+              
+
+
+
+            /* Top Type of pain Functions */
+            const typeFreq = {};
+
+            for (let {typePain} of symptomData30) {
+                for (let type of typePain) typeFreq[type] = (typeFreq[type] || 0) + 1;
+
+            }
+
+            const maxType = Math.max(...Object.values(typeFreq));
+            const type = Object.keys(typeFreq).find(type => typeFreq[type] === maxType);
+            // This gives you the top type
+            console.log('I am the top type of pain:', type)
+            console.log(typeFreq)
+            console.log('I am the top three types of pain:', findTop3(typeFreq));
+
+
+
+
+             /* Average Pain Functions */
             let totalLogs = symptomData30.length
             //this one can go
             let percentage = function(Logs, num){
@@ -94,6 +136,8 @@ app.get('/dashboard', isLoggedIn, async (req, res) =>{
             })
             let days = 30
             let avgPain = (painCount / totalLogs).toFixed(2)
+
+
             res.render('dashboard.ejs', {
                 doctor: doctorData30,
                 symptom: symptomData30,
@@ -129,7 +173,53 @@ app.get('/week', isLoggedIn, urlencodedParser, async (req, res)=> {
     //const symptomData = await      SymptomModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} })
     SymptomModel.find({postedBy : req.user._id, symptomDate: {$gte: `${week}T00:00:00.000+00:00`} })
         .then(symptomDataWeek => {
-                  console.log('I am data for the week: ',symptomDataWeek)
+                  //console.log('I am data for the week: ',symptomDataWeek)
+
+                //symptomDataWeek is an array of objects we need to loop through
+                // bodylocations is a key in each of those objects whose value is an array
+                //we need to figure our which value in the bodylocations appears the most
+                           /* Top bodyLocations Functions */
+            const freq = {};
+
+            for (let {bodyLocations} of symptomDataWeek) {
+                for (let location of bodyLocations) freq[location] = (freq[location] || 0) + 1;
+
+            }
+
+            const maxFreq = Math.max(...Object.values(freq));
+            const location = Object.keys(freq).find(location => freq[location] === maxFreq);
+            // This gives you the top location
+            console.log('I am the top location: ', location)
+            console.log(freq)
+
+            function findTop3(obj){
+                return Object.keys(obj).sort((a,b) => {return obj[b]-obj[a]}).slice(0,3);
+              }
+              
+              console.log('I am the top three Locations:', findTop3(freq));
+              
+
+
+
+
+            /* Top Type of pain Functions */
+            const typeFreq = {};
+
+            for (let {typePain} of symptomDataWeek) {
+                for (let type of typePain) typeFreq[type] = (typeFreq[type] || 0) + 1;
+
+            }
+
+            const maxType = Math.max(...Object.values(typeFreq));
+            const type = Object.keys(typeFreq).find(type => typeFreq[type] === maxType);
+            // This gives you the top type
+            console.log('I am the top type of pain:', type)
+            console.log(typeFreq)
+            console.log('I am the top three types of pain:', findTop3(typeFreq));
+
+
+            /* ==========Average Pain Functions ====== */
+
             let totalLogs = symptomDataWeek.length
             let percentage = function(Logs, num){
                 let percent = ((Logs/num) * 100)
@@ -185,6 +275,51 @@ let year = moment().subtract(365, 'd').format('YYYY-MM-DD')
     SymptomModel.find({postedBy : req.user._id, symptomDate: {$gte: `${year}T00:00:00.000+00:00`} })
         .then(symptomDataYear => {
                
+
+            /* Top bodyLocations Functions */
+            const freq = {};
+
+            for (let {bodyLocations} of symptomDataYear) {
+                for (let location of bodyLocations) freq[location] = (freq[location] || 0) + 1;
+
+            }
+
+            const maxFreq = Math.max(...Object.values(freq));
+            const location = Object.keys(freq).find(location => freq[location] === maxFreq);
+            // This gives you the top location
+            console.log('I am the top location: ', location)
+            console.log(freq)
+
+            function findTop3(obj){
+                return Object.keys(obj).sort((a,b) => {return obj[b]-obj[a]}).slice(0,3);
+              }
+              
+              console.log('I am the top three Locations:', findTop3(freq));
+              
+
+
+
+
+            /* Top Type of pain Functions */
+            const typeFreq = {};
+
+            for (let {typePain} of symptomDataYear) {
+                for (let type of typePain) typeFreq[type] = (typeFreq[type] || 0) + 1;
+
+            }
+
+            const maxType = Math.max(...Object.values(typeFreq));
+            const type = Object.keys(typeFreq).find(type => typeFreq[type] === maxType);
+            // This gives you the top type
+            console.log('I am the top type of pain:', type)
+            console.log(typeFreq)
+            console.log('I am the top three types of pain:', findTop3(typeFreq));
+
+
+
+
+
+            /* Average Pain Functions */
             let totalLogs = symptomDataYear.length
             let percentage = function(Logs, num){
                 let percent = ((Logs/num) * 100)
