@@ -20,7 +20,7 @@ module.exports = (app) => {
     let newSymptom = new SymptomModel({
       postedBy: req.user,
       created: now,
-      symptomDate: moment(req.body.symptomDate).format('YYYY-MM-DD'),
+      symptomDate: moment(req.body.start).format('YYYY-MM-DD'),
       painlevel: req.body["Pain Level"],
       bodyLocations: req.body["Body Locations"],
       typePain: req.body.typePain
