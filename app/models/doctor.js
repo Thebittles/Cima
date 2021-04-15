@@ -23,6 +23,7 @@ let DoctorSchema = new mongoose.Schema ({
     type: Date,
     required: false
   },
+  email: String,
   phone: String,
   adddress: String,
   city: String,

@@ -59,15 +59,18 @@
         
         <div class="row text-center mt-2">
             <div class="col-8">
-                <div class="graph-div">
-                    <p>
-
-                    </p>
-                    <canvas></canvas>
+                <h2>Top Body Locations</h2>
+                <div class="graph-div container justify-content-center">
+                    <div class="row">
+                        <% topBody.forEach(el => { %>
+                            <%= el.toUpperCase() %>
+                     <%   })  %>
+                    </div>
                 </div>
 
             </div>
             <div class="col-4">
+                <h2>Average Pain</h2>
             <div class="container">
                 <div class="row justify-content-center" id="pain-result">
                     <h5>Total Days |<strong class="info "><%= days%> </strong></h5>
@@ -83,8 +86,13 @@
 
         <div class="row text-center mt-2">
             <div class="col-8">
-                <div class="graph-div">
-                    <p>Second Graph would go here </p>
+                <h2>Top Pain Locations</h2>
+                <div class="graph-div container justify-content-center">
+                    <div class="row">
+                        <% topPain.forEach(el => { %>
+                            <%= el.toUpperCase() %>
+                     <%   })  %>
+                    </div>
                 </div>
             </div>
         </div>
