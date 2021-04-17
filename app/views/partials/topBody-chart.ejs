@@ -1,0 +1,44 @@
+
+
+    <canvas id="topBody-Chart"></canvas>
+
+
+
+<script>
+
+    let myChart = document.getElementById('topBody-Chart').getContext('2d');
+    
+    let topBodyChart = new Chart(myChart, {
+        type: 'bar',
+        data: {
+            labels: ['<%=topBody[0].toUpperCase()%>','<%=topBody[1].toUpperCase()%>','<%=topBody[2].toUpperCase()%>'] ,
+            datasets: [{
+                label: ['Top Body Locations'],
+                data: ['<%=bodyCounts[0]%>', '<%=bodyCounts[1]%>', '<%=bodyCounts[2]%>'],
+                backgroundColor: [
+                'rgb(82,74,92)',
+                'rgb(130,129,136)'],
+                borderWidth: 3,
+                borderColor: '#777',
+                hoverBorderColor: '#eee'
+            }]
+         },
+         
+        options: {
+            title:{ 
+                display: true,    
+                text: 'Top Body Locations',
+                fontSize:25
+            },
+            scales: {
+            yAxes: [{
+                    ticks: {
+                    beginAtZero:true
+                            }
+                    }]
+            }
+        }
+    })
+
+
+</script>
