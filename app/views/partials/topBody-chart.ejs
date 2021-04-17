@@ -11,7 +11,7 @@
     let topBodyChart = new Chart(myChart, {
         type: 'bar',
         data: {
-            labels: ['<%=topBody[0].toUpperCase()%>','<%=topBody[1].toUpperCase()%>','<%=topBody[2].toUpperCase()%>'] ,
+            labels: ['<%=topBody[0]%>','<%=topBody[1]%>','<%=topBody[2]%>'] ,
             datasets: [{
                 label: ['Top Body Locations'],
                 data: ['<%=bodyCounts[0]%>', '<%=bodyCounts[1]%>', '<%=bodyCounts[2]%>'],
