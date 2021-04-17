@@ -7,7 +7,7 @@
     <!-- close for loop -->
 <script>
     
-
+    
 
 
 
@@ -16,7 +16,7 @@
     let topPainChart = new Chart(SecondChart, {
         type: 'bar',
         data: {
-            labels: ['<%=topPain[0].toUpperCase()%>','<%=topPain[1].toUpperCase()%>','<%=topPain[2].toUpperCase()%>'] ,
+            labels: ['<%=topPain[0]%>','<%=topPain[1]%>','<%=topPain[2]%>'] ,
             datasets: [{
                 label: ['Top Pain Locations'],
                 data: ['<%=painCounts[0]%>', '<%=painCounts[1]%>', '<%=painCounts[2]%>'],
@@ -45,5 +45,5 @@
         }
     })
 
-
+    
 </script>

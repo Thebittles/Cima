@@ -142,7 +142,7 @@ app.get('/dashboard', isLoggedIn, async (req, res) =>{
             let days = 30
             let avgPain = (painCount / totalLogs).toFixed(2)
 
-
+            
             res.render('dashboard.ejs', {
                 doctor: doctorData30,
                 symptom: symptomData30,
