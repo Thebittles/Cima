@@ -56,44 +56,34 @@
                 </form>
             </div>
         </div>
-        
-        <div class="row text-center mt-2">
-            <div class="col-8">
-                <h2>Top Body Locations</h2>
-                <div class="graph-div container justify-content-center">
-                    <div class="row">
-                        <% topBody.forEach(el => { %>
-                            <%= el.toUpperCase() %>
-                     <%   })  %>
-                    </div>
-                </div>
+        <div class="row mt-2 justify-content-center">
+            <div class="col-12">
 
-            </div>
-            <div class="col-4">
-                <h2>Average Pain</h2>
-            <div class="container">
-                <div class="row justify-content-center" id="pain-result">
-                    <h5>Total Days |<strong class="info "><%= days%> </strong></h5>
-                    <h5>Average Pain Level | <strong class="info "> <%=average%> </strong></h5>
+                <div class="justify-content-center text-center" id="pain-result">
+                    <h3 class="text-center">Average Pain Level <br> <strong class="info "> <%=average%> </strong></h3>
                     <br>
-                    <h5>Percentage of Logs |<strong class="info "> <%= percent%>%</strong> </h5>
-                    <h5>Total numbers of Logs |<strong class="info "> <%=logs%></strong></h5>
+                    <p>
+
+                        Total Days |<strong class="info "><%= days%> </strong>
+                        <br>
+                        Total numbers of Logs |<strong class="info "> <%=logs%></strong>
+                        <br>
+                        Average Pain Level | <strong class="info "> <%=average%> </strong>
+                        <br>
+                        Percentage of Logs |<strong class="info "> <%= percent%>%</strong> 
+
+                    </p>
+
 
                 </div>
-            </div>
             </div>
         </div>
-
         <div class="row text-center mt-2">
-            <div class="col-8">
-                <h2>Top Pain Locations</h2>
-                <div class="graph-div container justify-content-center">
-                    <div class="row">
-                        <% topPain.forEach(el => { %>
-                            <%= el.toUpperCase() %>
-                     <%   })  %>
-                    </div>
-                </div>
+            <div class="col-6">
+                        <%- include('partials/topBody-chart.ejs')%>
+            </div>
+            <div class="col-6">
+                <%- include('partials/topPain-chart.ejs')%>
             </div>
         </div>
 

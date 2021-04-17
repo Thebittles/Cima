@@ -1,0 +1,49 @@
+
+
+    <canvas id="topPain-Chart"></canvas>
+
+
+
+    <!-- close for loop -->
+<script>
+    
+
+
+
+
+    let SecondChart = document.getElementById('topPain-Chart').getContext('2d');
+    
+    let topPainChart = new Chart(SecondChart, {
+        type: 'bar',
+        data: {
+            labels: ['<%=topPain[0].toUpperCase()%>','<%=topPain[1].toUpperCase()%>','<%=topPain[2].toUpperCase()%>'] ,
+            datasets: [{
+                label: ['Top Pain Locations'],
+                data: ['<%=painCounts[0]%>', '<%=painCounts[1]%>', '<%=painCounts[2]%>'],
+                backgroundColor: [
+                'rgb(82,74,92)',
+                'rgb(130,129,136)'],
+                borderWidth: 3,
+                borderColor: '#777',
+                hoverBorderColor: '#eee'
+            }]
+         },
+         
+        options: {
+            title:{ 
+                display: true,    
+                text: 'Top Body Locations',
+                fontSize:25
+            },
+            scales: {
+            yAxes: [{
+                    ticks: {
+                    beginAtZero:true
+                            }
+                    }]
+            }
+        }
+    })
+
+
+</script>

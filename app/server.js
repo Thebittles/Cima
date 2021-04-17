@@ -98,6 +98,13 @@ app.get('/dashboard', isLoggedIn, async (req, res) =>{
               
              let topThreeBody = findTop3(freq);
               
+             let bodyCounts = []
+             topThreeBody.forEach(el => {
+                 bodyCounts.push(freq[el])
+             })
+
+             
+            
             /* Top Type of pain Functions */
             const typeFreq = {};
 
@@ -112,8 +119,12 @@ app.get('/dashboard', isLoggedIn, async (req, res) =>{
             //console.log('I am the top type of pain:', type)
             //console.log(typeFreq)
             let topThreePain = findTop3(typeFreq);
+            let painCounts = []
+            topThreePain.forEach(el => {
+                painCounts.push(typeFreq[el])
+            })
 
-
+            
 
              /* Average Pain Functions */
             let totalLogs = symptomData30.length
@@ -142,7 +153,9 @@ app.get('/dashboard', isLoggedIn, async (req, res) =>{
                 average: avgPain,
                 days: days,
                 topBody: topThreeBody,
-                topPain: topThreePain
+                bodyCounts: bodyCounts,
+                topPain: topThreePain,
+                painCounts: painCounts
             });
         })
         .catch(err => {
@@ -182,13 +195,19 @@ app.get('/week', isLoggedIn, urlencodedParser, async (req, res)=> {
             const location = Object.keys(freq).find(location => freq[location] === maxFreq);
             // This gives you the top location
             console.log('I am the top location: ', location)
-            console.log(freq)
+           
 
             function findTop3(obj){
                 return Object.keys(obj).sort((a,b) => {return obj[b]-obj[a]}).slice(0,3);
               }
               
               let topThreeBody = findTop3(freq);
+              
+              let bodyCounts = []
+              topThreeBody.forEach(el => {
+                  bodyCounts.push(freq[el])
+              })
+              /* End body functions */
             
 
             /* Top Type of pain Functions */
@@ -203,7 +222,11 @@ app.get('/week', isLoggedIn, urlencodedParser, async (req, res)=> {
             const type = Object.keys(typeFreq).find(type => typeFreq[type] === maxType);
             // This gives you the top pain
             let topThreePain = findTop3(typeFreq);
-
+            let painCounts = []
+            topThreePain.forEach(el => {
+                painCounts.push(typeFreq[el])
+            })
+            /* End pain functions */
 
             /* ==========Average Pain Functions ====== */
 
@@ -236,7 +259,9 @@ app.get('/week', isLoggedIn, urlencodedParser, async (req, res)=> {
                 average: avgPain,
                 days: days,
                 topBody: topThreeBody,
-                topPain: topThreePain
+                bodyCounts, bodyCounts,
+                topPain: topThreePain,
+                painCounts: painCounts
             });
         })
         .catch(err =>{
@@ -283,6 +308,12 @@ let year = moment().subtract(365, 'd').format('YYYY-MM-DD')
               
               let topThreeBody = findTop3(freq);
               
+              let bodyCounts = []
+              topThreeBody.forEach(el => {
+                  bodyCounts.push(freq[el])
+              })
+ 
+              /* Top Body Functions END */
 
 
 
@@ -299,6 +330,11 @@ let year = moment().subtract(365, 'd').format('YYYY-MM-DD')
             const type = Object.keys(typeFreq).find(type => typeFreq[type] === maxType);
             // This gives you the top type
             let topThreePain = findTop3(typeFreq);
+            let painCounts = []
+            topThreePain.forEach(el => {
+                painCounts.push(typeFreq[el])
+            })
+            /* Top Pain Functions END */
 
 
 
@@ -330,7 +366,10 @@ let year = moment().subtract(365, 'd').format('YYYY-MM-DD')
                 average: avgPain,
                 days: days,
                 topBody: topThreeBody,
-                topPain: topThreePain
+                bodyCounts: bodyCounts,
+                topPain: topThreePain,
+                painCounts: painCounts
+
             });
         })
         .catch(error => {
@@ -342,9 +381,7 @@ let year = moment().subtract(365, 'd').format('YYYY-MM-DD')
 
 
 
-app.get('/test', isLoggedIn, urlencodedParser, (req, res)=> {
-    res.render('test.ejs')
-})
+
 
 
 
