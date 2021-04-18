@@ -119,17 +119,18 @@
             <div class="col-4">
                 <h4 class="text-center history-box">Symptoms</h4>
                 <div class="symptom-container history-box-container">
-
+                        
                         <% symptom.forEach(function(el){ %>
                             <ul>
-                            <li><div class="hello"> 
-                                <p>
+                            <li class="hello" data-id="<%=el._id%>">
+                            
                                     Date Created: <strong> <%=el.created%></strong><br>
                                     Date Started: <strong><%=el.symptomDate%></strong><br>
                                     Pain Level: <strong><%=el.painlevel%></strong> <br>
                                     <span><i class="fas fa-trash-alt"></i></span> 
-                                </p>
-                            </div></li>
+                                     
+                            
+                            </li>
                             </ul>
                             <% }) %>
 
