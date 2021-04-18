@@ -390,7 +390,7 @@ app.delete("/dashboard/:id", (req, res) => {
           console.log(error)
         res.status(400).send('Id does not exist for deletion')
       } else {
-        res.status(201).send(result)
+        res.redirect('/dashboard')
       }
     })
   });
