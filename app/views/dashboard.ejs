@@ -122,7 +122,7 @@
                         
                         <% symptom.forEach(function(el){ %>
                             <ul>
-                            <li class="hello" data-id="<%=el._id%>">
+                            <li class="hello symptom-list" data-id="<%=el._id%>">
                             
                                     Date Created: <strong> <%=el.created%></strong><br>
                                     Date Started: <strong><%=el.symptomDate%></strong><br>
@@ -141,13 +141,13 @@
                 <div class="treatment-container history-box-container">
                     <% treatment.forEach(function(el){ %>
                         <ul>
-                        <li><div class="hello"> Date Created: <strong> <%=el.created%></strong> <br>
+                        <li class="hello treatment-list" data-id="<%=el._id%>"> Date Created: <strong> <%=el.created%></strong> <br>
                                 Name: <strong> <%=el.treatment%> </strong>  <br>
                                 Effectiveness: <strong><%=el.effective%></strong> <br>
                                 Review: <strong><%=el.review%></strong> 
                                 <br>
                                 <span><i class="fas fa-trash-alt"></i></span> 
-                        </div></li>
+                        </li>
                         </ul>
                    <% }) %>
                 </div>
@@ -158,12 +158,13 @@
                 <div class="doctor-container history-box-container">
                     <% doctor.forEach(function(el){ %>
                         <ul>
-                        <li><div class="hello"> Date Created: <strong> <%=el.created%></strong><br>  
+                        <li class="hello doctor-list" data-id="<%=el._id%>">
+                                Date Created: <strong> <%=el.created%></strong><br>  
                                 Name: <strong> <%=el.name%> </strong> <br>
                                 First Visit: <strong><%=el.startV%></strong> <br>
                                 City: <strong><%=el.city%></strong> <br>
                                 <span><i class="fas fa-trash-alt"></i></span> 
-                        </div></li>
+                        </li>
                         </ul>
                    <% }) %>
                 </div>

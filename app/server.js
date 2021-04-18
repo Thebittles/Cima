@@ -397,6 +397,54 @@ app.delete("/dashboard/:id", (req, res) => {
 
 
 
+  // Delete symptom route
+  app.delete("/dashboard/:id", (req, res) => {
+    let requestedToDoId = req.params.id;
+    
+    
+    SymptomModel.findOneAndDelete({_id: requestedToDoId}, function(error, result){
+      if(error){
+          console.log(error)
+        res.status(400).send('Id does not exist for deletion')
+      } else {
+        res.redirect('/dashboard')
+      }
+    })
+  });
+
+
+  //Delete treatment route
+  app.delete("/dashboard/treatment/:id", (req, res) => {
+    let requestedToDoId = req.params.id;
+    
+    
+    TreatmentModel.findOneAndDelete({_id: requestedToDoId}, function(error, result){
+      if(error){
+          console.log(error)
+        res.status(400).send('Id does not exist for deletion')
+      } else {
+        res.redirect('/dashboard')
+      }
+    })
+  });
+
+
+    //Delete treatment route
+    app.delete("/dashboard/doctor/:id", (req, res) => {
+        let requestedToDoId = req.params.id;
+        
+        console.log(requestedToDoId, typeof(requestedToDoId))
+        DoctorModel.findOneAndDelete({_id: requestedToDoId}, function(error, result){
+          if(error){
+              console.log(error)
+            res.status(400).send('Id does not exist for deletion')
+          } else {
+            res.redirect('/dashboard')
+          }
+        })
+      });
+
+
 
 
 

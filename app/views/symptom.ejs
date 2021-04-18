@@ -7,7 +7,13 @@
   <span onclick="location.href='/dashboard'">   <i class="fas fa-chevron-circle-left fa-2x my-2"></i></span>
     <form id="symptom-form" class="form-horizontal" action="/symptom" method="POST">
     <legend>Symptom</legend>
-    <div id="error"></div>
+      <!-- messages ejs here -->
+      <%if(typeof err == "undefined"){%>
+        <% } else { %>
+                <p class="error">
+                <%= err%>
+               </p> 
+           <%}%>
     <div class="row justify-content-center">
       <div class="col-4">
         <label for="start" class="col-form-label">Date</label>
