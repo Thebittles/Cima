@@ -63,7 +63,7 @@ passport.deserializeUser(UserModel.deserializeUser());
 /* Query Routes */
 app.get('/dashboard', isLoggedIn, async (req, res) =>{
     let thirtyDays = moment().subtract(30, 'd').format('YYYY-MM-DD')
-
+    
     try {
         var doctorData30 = await DoctorModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} }).exec()
     } catch(err){
@@ -78,7 +78,7 @@ app.get('/dashboard', isLoggedIn, async (req, res) =>{
     //const symptomData = await      SymptomModel.find({postedBy : req.user._id, created: {$gte: `${thirtyDays}`} })
     SymptomModel.find({postedBy : req.user._id, symptomDate: {$gte: `${thirtyDays}T00:00:00.000+00:00`} })
         .then(symptomData30 => {
-             //console.log(symptomData)
+             
              
             /* Top bodyLocations Functions */
             const freq = {};
@@ -380,7 +380,20 @@ let year = moment().subtract(365, 'd').format('YYYY-MM-DD')
 /* End query routes */
 
 
-
+// Delete data
+app.delete("/dashboard/:id", (req, res) => {
+    let requestedToDoId = req.params.id;
+    
+    console.log(requestedToDoId, typeof(requestedToDoId))
+    SymptomModel.findOneAndDelete({_id: requestedToDoId}, function(error, result){
+      if(error){
+          console.log(error)
+        res.status(400).send('Id does not exist for deletion')
+      } else {
+        res.status(201).send(result)
+      }
+    })
+  });
 
 
 
