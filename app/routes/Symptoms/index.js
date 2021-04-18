@@ -29,6 +29,7 @@ module.exports = (app) => {
     newSymptom.save(function(error, result){
       if(error){
       console.log('Error: ', error)
+          res.send(`Something went wrong saving data.`)
           mongoose.disconnect()
           } else {
           console.log('Saved new Symptom: ', result)

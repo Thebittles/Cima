@@ -5,9 +5,9 @@
 <div class="container my-3 dark-section justify-content-center" id="contact">
 
   <span onclick="location.href='/dashboard'">   <i class="fas fa-chevron-circle-left fa-2x my-2"></i></span>
-    <form class="form-horizontal" action="/symptom" method="POST">
+    <form id="symptom-form" class="form-horizontal" action="/symptom" method="POST">
     <legend>Symptom</legend>
-
+    <div id="error"></div>
     <div class="row justify-content-center">
       <div class="col-4">
         <label for="start" class="col-form-label">Date</label>
