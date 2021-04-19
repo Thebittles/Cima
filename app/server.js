@@ -425,7 +425,8 @@ app.delete("/dashboard/treatment/:id", (req, res) => {
         console.log(error);
         res.status(400).send("Id does not exist for deletion");
       } else {
-        res.redirect("/dashboard");
+        console.log(`Deleted treatment with ID of ${requestedToDoId}`);
+        res.redirect(200, "/dashboard");
       }
     }
   );
