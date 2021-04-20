@@ -29,7 +29,7 @@ module.exports = (app) => {
     newSymptom.save(function(error, result){
       if(error){
       console.log('Error: ', error)
-          res.render('symptom.ejs', {err: err})
+          res.render('symptom.ejs', {err: error})
           mongoose.disconnect()
           } else {
           console.log('Saved new Symptom: ', result)
