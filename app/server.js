@@ -417,9 +417,6 @@ app.delete("/dashboard/symptom/:id", (req, res) => {
 //Delete treatment route
 app.delete("/dashboard/treatment/:id", (req, res) => {
   let requestedToDoId = req.params.id;
-
-
-
   
   TreatmentModel.findOneAndDelete(
     { _id: requestedToDoId },
@@ -435,7 +432,7 @@ app.delete("/dashboard/treatment/:id", (req, res) => {
   );
 });
 
-//Delete treatment route
+//Delete doctor route
 app.delete("/dashboard/doctor/:id", (req, res) => {
   let requestedToDoId = req.params.id;
 
