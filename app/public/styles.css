@@ -66,13 +66,6 @@ color:rgb(0, 0, 0)
      text-shadow: none;
  }
 
-.removed {
-    transition: all 0.8s ease-out;
-    opacity: 0;
-}
-
-
-
 #contact, #login, #registerContainer, #symptomForm, #treatmentForm, #doctorForm {
     height: 100%;
     width: 90%;
