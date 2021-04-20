@@ -6,9 +6,8 @@ const todoUrl = 'http://localhost:3000/dashboard'
 // Delete - DELETE symptoms
 $('.symptom-list').on('click', 'span', function(event){
     event.stopPropagation();
+    $(this).addClass('removed')
     var self = this; 
-    
-    
     var thisId = $(this).parent().data('id');
     
     var url = `${todoUrl}/symptom/${thisId}`
@@ -16,7 +15,7 @@ $('.symptom-list').on('click', 'span', function(event){
         url: url,
         method: 'DELETE',
     })
-    .done(function(){
+    .done('transitioned', '.removed', function(){
         $(self).parent().remove(); // removes the li element of the span clicked in browser
 
     })
@@ -30,6 +29,7 @@ $('.symptom-list').on('click', 'span', function(event){
   // Delete - DELETE treatment
 $('.treatment-list').on('click', 'span', function(event){
     event.stopPropagation();
+    $(this).addClass('removed')
     var self = this; 
     console.log('I am self: ', self)
     
@@ -40,7 +40,7 @@ $('.treatment-list').on('click', 'span', function(event){
         url: url,
         method: 'DELETE',
     })
-    .done(function(){
+    .done('transitioned', '.removed', function(){
         $(self).parent().remove(); // removes the li element of the span clicked in browser
         refresh()
     })
@@ -53,6 +53,7 @@ $('.treatment-list').on('click', 'span', function(event){
     // Delete - DELETE treatment
 $('.doctor-list').on('click', 'span', function(event){
     event.stopPropagation();
+    $(this).addClass('removed')
     var self = this; 
     console.log('I am self: ', self)
     
@@ -63,7 +64,7 @@ $('.doctor-list').on('click', 'span', function(event){
         url: url,
         method: 'DELETE',
     })
-    .done(function(){
+    .done('transitioned', '.removed', function(){
         $(self).parent().remove(); // removes the li element of the span clicked in browser
     })
     .fail(function(err){

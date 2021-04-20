@@ -417,6 +417,7 @@ app.delete("/dashboard/symptom/:id", (req, res) => {
 //Delete treatment route
 app.delete("/dashboard/treatment/:id", (req, res) => {
   let requestedToDoId = req.params.id;
+
   TreatmentModel.findOneAndDelete({ _id: requestedToDoId })
   .then((result)=> {
     res.redirect(200, "/dashboard");
@@ -426,10 +427,9 @@ app.delete("/dashboard/treatment/:id", (req, res) => {
     console.log(error)
   });
 
-
 });
 
-//Delete treatment route
+//Delete doctor route
 app.delete("/dashboard/doctor/:id", (req, res) => {
   let requestedToDoId = req.params.id;
   DoctorModel.findOneAndDelete({_id: requestedToDoId})
