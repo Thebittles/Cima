@@ -417,41 +417,32 @@ app.delete("/dashboard/symptom/:id", (req, res) => {
 //Delete treatment route
 app.delete("/dashboard/treatment/:id", (req, res) => {
   let requestedToDoId = req.params.id;
+  TreatmentModel.findOneAndDelete({ _id: requestedToDoId })
+  .then((result)=> {
+    res.redirect(200, "/dashboard");
+    console.log(`Deleted Treatment with ID of ${requestedToDoId}`);
+  })
+  .catch((error)=> {
+    console.log(error)
+  });
 
 
-
-  
-  TreatmentModel.findOneAndDelete(
-    { _id: requestedToDoId },
-    function (error, result) {
-      if (error) {
-        console.log(error);
-        res.status(400).send("Id does not exist for deletion");
-      } else {
-        console.log(`Deleted treatment with ID of ${requestedToDoId}`);
-        res.redirect(200, "/dashboard");
-      }
-    }
-  );
 });
 
 //Delete treatment route
 app.delete("/dashboard/doctor/:id", (req, res) => {
   let requestedToDoId = req.params.id;
-
-  console.log(requestedToDoId, typeof requestedToDoId);
-  DoctorModel.findOneAndDelete(
-    { _id: requestedToDoId },
-    function (error, result) {
-      if (error) {
-        console.log(error);
-        res.status(400).send("Id does not exist for deletion");
-      } else {
-        res.redirect("/dashboard");
-      }
-    }
-  );
+  DoctorModel.findOneAndDelete({_id: requestedToDoId})
+  .then((result) =>{
+    res.redirect(200, "/dashboard");
+    console.log(`Deleted Doctor with ID of ${requestedToDoId}`)
+  })
+  .catch((error)=>{
+    console.log(error)
+  })
 });
+
+
 
 require("./routes/Auth/index")(app);
 require("./routes/Auth/login")(app);
