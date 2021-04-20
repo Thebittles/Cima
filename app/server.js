@@ -418,6 +418,9 @@ app.delete("/dashboard/symptom/:id", (req, res) => {
 app.delete("/dashboard/treatment/:id", (req, res) => {
   let requestedToDoId = req.params.id;
 
+
+
+  
   TreatmentModel.findOneAndDelete(
     { _id: requestedToDoId },
     function (error, result) {
