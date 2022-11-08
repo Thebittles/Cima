@@ -1,7 +1,7 @@
 # cima
 Austin Community College Software Bootcamp Final Project. 
 
-
+**Check it out!**
 [CIMA](https://accsoftware-cima.herokuapp.com/)
 
 
